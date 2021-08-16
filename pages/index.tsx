@@ -174,7 +174,7 @@ export default function Home() {
   useEffect(() => {
     scrollVariables.current.onscroll = () => {
       let screenHeight = scrollVariables.current.clientHeight;
-    //   console.log(screenHeight);
+      //   console.log(screenHeight);
       //   let appHeight = scrollVariables.current.offsetHeight;
       //   console.log(appHeight);
 
@@ -205,7 +205,7 @@ export default function Home() {
         scrollThing.current.style.transform = "skew(25deg)";
       }
       if (trackScrollTop > screenHeight * 3 + 100) {
-        scrollThing.current.style.marginRight = "65%";
+        scrollThing.current.style.marginRight = "60%";
         scrollThing.current.style.height = "100%";
         scrollThing.current.style.width = "100%";
         scrollThing.current.style.transform = "skew(-15deg)";
@@ -479,22 +479,22 @@ export default function Home() {
         </div>
       </div>
       <div className="c-about">
-        <div className="c-about--overlay-purple flex">
-          <div className="w-1/2 grid p-12 sm:p-24 grid-rows-3 grid-cols-2 gap-4 flex-wrap">
-            <div className="bg-black rounded-md col-span-2 bg-opacity-70 ">ja</div>
-            <div className="bg-black rounded-md row-span-2 bg-opacity-70 ">hoi</div>
-            <div className="bg-black rounded-md bg-opacity-70 ">xd</div>
-            <div className="bg-black rounded-md bg-opacity-70 ">jo</div>
-            <div className="col-span-2 grid gap-4 grid-cols-4">
-              <div className="bg-black rounded-md h-24 bg-opacity-70 ">hoi</div>
-              <div className="bg-black rounded-md h-24 bg-opacity-70 ">hoi</div>
-              <div className="bg-black rounded-md h-24 bg-opacity-70 ">hoi</div>
-              <div className="bg-black rounded-md h-24 bg-opacity-70 ">hoi</div>
+        <div className="c-about--overlay-purple flex flex-col-reverse sm:flex-row">
+          <div className="w-full sm:w-1/2 grid p-8 sm:p-24 grid-rows-3 grid-cols-2 gap-4 flex-wrap">
+            <div className="bg-black rounded-md col-span-2 bg-opacity-70 "></div>
+            <div className="bg-black rounded-md row-span-2 bg-opacity-70 "></div>
+            <div className="bg-black rounded-md bg-opacity-70 "></div>
+            <div className="bg-black rounded-md bg-opacity-70 "></div>
+            <div className="col-span-2  gap-4 grid-cols-4 hidden sm:grid">
+              <div className="bg-black rounded-md h-24 bg-opacity-70 "></div>
+              <div className="bg-black rounded-md h-24 bg-opacity-70 "></div>
+              <div className="bg-black rounded-md h-24 bg-opacity-70 "></div>
+              <div className="bg-black rounded-md h-24 bg-opacity-70 "></div>
             </div>
           </div>
-          <div className="w-1/2 p-24 pl-0">
+          <div className="w-full sm:w-1/2 p-8 sm:p-24 sm:pl-0">
             <h3 className="font-bold text-3xl">Who's Mave?</h3>
-            <div className="mt-6">
+            <div className="mt-6 text-white text-opacity-90">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
               erat, sed diam voluptua. At vero eos et accusam et justo duo
@@ -513,7 +513,7 @@ export default function Home() {
               tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
               voluptua.{" "}
             </div>
-            <div className="text-sm mt-4">
+            <div className="text-sm mt-4 text-white text-opacity-70">
               At vero eos et accusam et justo duo dolores et ea rebum. Stet
               clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
               dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
@@ -548,24 +548,55 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <footer className="c-footer px-12 sm:px-24 py-16 flex justify-between w-full">
-        <div>paper</div>
-        <div className="text-right text-white text-opacity-50">
-          Website made with{" "}
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 inline text-red-600"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
-              clipRule="evenodd"
-            />
-          </svg>{" "}
-          <br />
-          by <a href="/" className="font-medium hover:underline">MaveProductions</a>
+      <footer className="c-footer px-12 sm:px-24 py-16 ">
+        <div className="flex justify-between w-full">
+          <div className="flex flex-col gap-2">
+            <div className="font-bold uppercase gap-2 flex items-center -ml-6">
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 transform rotate-45"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+              >
+                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+              </svg> Navigate{" "}
+              
+            </div>
+            {pages &&
+              pages.map((page, index) => {
+                return (
+                  <a href="/" className="capitalize hover:underline text-white text-opacity-80">
+                    {page}
+                  </a>
+                );
+              })}
+          </div>
+
+          <div className="text-right text-white text-opacity-50 ">
+            Website made with{" "}
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-5 w-5 inline text-red-600"
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+                clipRule="evenodd"
+              />
+            </svg>{" "}
+            <br />
+            by{" "}
+            <a href="/" className="font-medium hover:underline">
+              MaveProductions
+            </a>
+          </div>
+        </div>
+        <div className="mt-8 text-opacity-50 text-white text-sm flex gap-4">
+          <div>Terms & Conditions</div>
+          <div>Privacy Policy </div>
+          <div>Cookies Policy</div>
         </div>
       </footer>
     </div>

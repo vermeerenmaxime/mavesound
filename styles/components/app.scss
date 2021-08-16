@@ -11,15 +11,17 @@
   font-family: $lato;
   font-size: var(--font-size);
 
-  grid-template-rows: repeat(4, 100vh);
+//   grid-template-rows: repeat(4, 100vh);
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
 
   font-weight: 300;
-  main,
-  div,
-  footer {
-    scroll-snap-align: start;
+  .c-main,
+  .c-about,
+  .c-music,
+  .c-contact,
+  .c-footer {
+    scroll-snap-align: center;
   }
 }
 

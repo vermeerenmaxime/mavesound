@@ -1,36 +1,70 @@
-.c-input{
-    outline:none;
-    font-family:inherit;
-    font-weight:300;
+.c-input {
+    outline: none;
+    font-family: inherit;
+    font-weight: 300;
     // height:20px;
-    background:none;
-    border-bottom:2px solid color(darkblue,50);
+    background: none;
+    border-bottom: 2px solid color(darkblue, 50);
     transition: 0.2s ease all;
     will-change: background;
-    font-size:.875rem;
+    font-size: 0.875rem;
 
-    &:hover,&:focus{
-    background:color(darkblue,50);
+    &:hover,
+    &:focus {
+        background: color(darkblue, 50);
     }
-    padding:1.25rem;
-    &--option{
-        width:75%;
-        cursor:pointer;
+    padding: 1.25rem;
+    &--option {
+        width: 75%;
+        cursor: pointer;
+        position: relative;
+    }
+}
+.c-option {
+    position: absolute;
+    content: "";
+
+    bottom: 0;
+    top: 100%;
+    left: 0;
+    right: 0;
+    // width: 50%;
+    color: color(light, 75);
+    will-change: background, width;
+
+    transition: 0.2s ease all;
+    z-index: 1001;
+    display:none;
+    &--selected{
+        display:block;
+    }
+    &__select {
+        // background: color(darkblue, 10);
+        background: rgb(36, 43, 66);
+        padding: 1rem 1.5rem;
+        overflow: hidden;
+        outline: none;
+        &:hover {
+            backdrop-filter: blur(5rem);
+            background: color(darkblue, 50);
+            font-weight: 500;
+        }
     }
 }
 
-.c-button{
-    outline:none;
-    font-family:inherit;
+.c-button {
+    backdrop-filter: blur(5rem);
+    outline: none;
+    font-family: inherit;
 
     // height:20px;
-    background: color(darkblue,50);
-    &:hover,&:focus{
-    background:color(darkblue,75);
+    background: color(darkblue, 50);
+    &:hover,
+    &:focus {
+        background: color(darkblue, 75);
     }
     transition: 0.2s ease all;
     will-change: background;
-    padding:1.5rem 1.5rem;
-    width:200px;
-
+    padding: 1.5rem 1.5rem;
+    width: 200px;
 }
