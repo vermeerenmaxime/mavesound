@@ -1,0 +1,36 @@
+.c-input{
+    outline:none;
+    font-family:inherit;
+    font-weight:300;
+    // height:20px;
+    background:none;
+    border-bottom:2px solid color(darkblue,50);
+    transition: 0.2s ease all;
+    will-change: background;
+    font-size:.875rem;
+
+    &:hover,&:focus{
+    background:color(darkblue,50);
+    }
+    padding:1.25rem;
+    &--option{
+        width:75%;
+        cursor:pointer;
+    }
+}
+
+.c-button{
+    outline:none;
+    font-family:inherit;
+
+    // height:20px;
+    background: color(darkblue,50);
+    &:hover,&:focus{
+    background:color(darkblue,75);
+    }
+    transition: 0.2s ease all;
+    will-change: background;
+    padding:1.5rem 1.5rem;
+    width:200px;
+
+}

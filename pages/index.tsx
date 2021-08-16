@@ -27,59 +27,68 @@ const NavigationLink = ({ children, selected = false, href = "/" }) => {
 const Navigation = () => {
   const router = useRouter();
   let pageName = router.pathname.substring(1, router.pathname.length);
+  const [toggle, setToggle] = useState(false);
 
   return (
-    <div className="c-main__navigation c-nav p-12 px-12 lg:px-24 text-sm flex space-x-12 justify-end items-center uppercase font-semibold ">
-      <div className="space-x-12 hidden sm:block">
-        {pages &&
-          pages.map((page, index) => {
-            return (
-              <NavigationLink
-                key={index}
-                href={"/"}
-                selected={
-                  pageName === page
-                    ? true
-                    : index === 0 && pageName === ""
-                    ? true
-                    : false
-                }
-              >
-                {page}
-              </NavigationLink>
-            );
-          })}
-      </div>
-      <div className="c-nav__toggle">
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
+    <>
+      <div className="c-main__navigation c-nav p-12 px-12 lg:px-24 text-sm flex space-x-12 justify-end items-center uppercase font-semibold ">
+        <div className="space-x-12 hidden sm:block">
+          {pages &&
+            pages.map((page, index) => {
+              return (
+                <NavigationLink
+                  key={index}
+                  href={"/"}
+                  selected={
+                    pageName === page
+                      ? true
+                      : index === 0 && pageName === ""
+                      ? true
+                      : false
+                  }
+                >
+                  {page}
+                </NavigationLink>
+              );
+            })}
+        </div>
+        <div
+          className={`c-nav__toggle ${toggle && "c-nav__toggle--selected"}`}
+          onClick={() => {
+            setToggle(!toggle);
+          }}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M4 6h16M4 12h16M4 18h16"
-          />
-        </svg>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-6 w-6"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </div>
       </div>
-    </div>
+      <SideNavigation className="slideInLeft"></SideNavigation>
+    </>
   );
 };
 
-const SubLink = ({ children, className, href = "/" }) => {
+const SubLink = ({ children, className = "", href = "/", size = "sm" }) => {
   return (
     <Link href={`${href}`}>
       <a
-        className={`flex uppercase font-bold tracking-widest text-sm items-center mt-8 ${className}`}
+        className={`flex uppercase font-bold tracking-widest text-${size} cursor-pointer items-center mt-8 ${className}hover:`}
       >
         {children}{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4 ml-2"
+          className={`${size == "sm" ? "h-4 w-4 ml-2" : "h-3 w-3 ml-1"}`}
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -103,6 +112,43 @@ const SocialLink = ({ link, media, extraClass = "" }) => {
         className={`fab fa-${media} c-socials__icon transform ${extraClass} `}
       ></i>
     </a>
+  );
+};
+
+const SideNavigation = ({ className }) => {
+  const router = useRouter();
+  let pageName = router.pathname.substring(1, router.pathname.length);
+  const [toggle, setToggle] = useState(false);
+  return (
+    <aside
+      className={`c-navigation backdrop-filter backdrop-blur-xl p-12 flex flex-col justify-between ${className} ${
+        !toggle && "slideOutLeft"
+      }`}
+    >
+      <div className="flex flex-col uppercase font-semibold gap-5 text-white text-sm">
+        {pages &&
+          pages.map((page, index) => {
+            return (
+              <NavigationLink
+                key={index}
+                href={"/"}
+                selected={
+                  pageName === page
+                    ? true
+                    : index === 0 && pageName === ""
+                    ? true
+                    : false
+                }
+              >
+                {page}
+              </NavigationLink>
+            );
+          })}
+      </div>
+      <div onClick={() => (setToggle(false), console.log("hiƒ", toggle))}>
+        close
+      </div>
+    </aside>
   );
 };
 
@@ -238,7 +284,7 @@ export default function Home() {
             songs.map((song, index) => {
               return <>hi</>;
             })} */}
-          <MusicCover></MusicCover>
+          <MusicCover>yas!</MusicCover>
           <MusicCover></MusicCover>
           <MusicCover></MusicCover>
           <MusicCover></MusicCover>
@@ -251,14 +297,149 @@ export default function Home() {
           <MusicNavigatorDot enabled={false} />
         </div>
       </div>
-      <div className="c-x">Contact</div>
+      <div className="c-contact flex p-12 sm:p-12 md:p-24 justify-center flex-col ">
+        <h2 className="text-3xl font-bold">Contact Mave</h2>
+        <div className="mt-8 flex flex-col w-full sm:w-5/12">
+          <InputSelect></InputSelect>
+          <textarea
+            className="c-input mt-4"
+            placeholder="Write something.."
+            rows={4}
+          ></textarea>
+          <input
+            type="text"
+            className="c-input mt-4"
+            placeholder="Email address.."
+          ></input>
+          <button className="c-button mt-8">Send</button>
+        </div>
+        <div className="mt-8 sm:mt-24">
+          <div className="items-center font-medium gap-4 text-white text-opacity-80 hidden sm:flex">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26.543"
+              height="26.545"
+              viewBox="0 0 26.543 26.545"
+            >
+              <g
+                id="at-sign"
+                transform="translate(-0.984 -0.983)"
+                opacity="0.8"
+              >
+                <circle
+                  id="Ellipse_1"
+                  data-name="Ellipse 1"
+                  cx="4.991"
+                  cy="4.991"
+                  r="4.991"
+                  transform="translate(9.272 9.273)"
+                  fill="none"
+                  stroke="#fff"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+                <path
+                  id="Path_8"
+                  data-name="Path 8"
+                  d="M19.169,9.358V15.49a3.679,3.679,0,1,0,7.358,0V14.263A12.263,12.263,0,1,0,21.72,24"
+                  transform="translate(0 0)"
+                  fill="none"
+                  stroke="#fff"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                />
+              </g>
+            </svg>
+            or just write an old fashioned email..
+          </div>
+          <div className="mt-4 flex gap-6 text-sm font-semibold mix-blend-overlay sm:items-center flex-col sm:flex-row">
+            <div className="flex items-center gap-2">
+              {" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              management@mavesound.com
+            </div>
+            <div className="flex items-center gap-2">
+              {" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              promo@mavesound.com
+            </div>
+            <div className="flex items-center gap-2">
+              {" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              bookings@mavesound.com
+            </div>
+          </div>
+        </div>
+      </div>
       <div className="c-x">Who is Mave</div>
 
       <footer className="c-footer">Paginas</footer>
-      <aside className="c-navigation backdrop-filter backdrop-blur-xl"></aside>
     </div>
   );
 }
+
+const InputSelect = () => {
+  return (
+    <div className="c-input c-input--option flex justify-between">
+      <div>Select subject</div>
+      <div>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-5 w-5"
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+            clipRule="evenodd"
+          />
+        </svg>
+      </div>
+    </div>
+  );
+};
 
 const MusicNavigatorDot = ({ enabled = false }) => {
   return (
@@ -296,38 +477,56 @@ const MusicCover = ({
   trackName = "No trackname",
   children = "No description",
   artists = "Mave",
-  listenURL = "",
+  listenURL = "/",
 }) => {
   const [description, setDescription] = useState(false);
   return (
     <div
-      className="h-36 lg:h-48 bg-white rounded-sm overflow-hidden flex items-end"
-      style={{
-        backgroundImage: `url(${backgroundImage})`,
-        backgroundSize: "cover",
-      }}
-      onMouseEnter={() => setDescription(true)}
+      className="h-36 lg:h-48 rounded-sm overflow-hidden "
+      onMouseOver={() => setDescription(true)}
       onMouseLeave={() => setDescription(false)}
     >
-      {description ? (
-        <div className="bg-white bg-opacity-25 p-4 text-xs transform w-3/4 h-full backdrop-filter backdrop-blur-xl">
-          <div className="transform flex flex-col">
+      <div
+        className="h-36 lg:h-48 bg-white flex items-end"
+        style={{
+          backgroundImage: `url(${backgroundImage})`,
+          backgroundSize: "cover",
+        }}
+      ></div>
+      <div
+        className={`h-36 lg:h-48 -mt-36 lg:-mt-48 flex items-end ${
+          description ? "fadeOut" : "fadeIn"
+        }`}
+      >
+        <div className="bg-black bg-opacity-60 px-4 py-3 text-xs lg:text-sm w-full  backdrop-filter backdrop-blur-xl">
+          <div className="block font-bold uppercase">{artists}</div>
+          <div className="block -mt-1">{trackName}</div>
+        </div>
+      </div>
+
+      <div
+        className={`h-36 lg:h-48 -mt-36 lg:-mt-48 ${
+          description ? "fadeIn" : "fadeOut"
+        } bg-white bg-opacity-25  transform -skew-x-12 -ml-6 w-11/12 md:w-3/4 h-full backdrop-filter backdrop-blur-xl `}
+      ></div>
+      <div
+        className={`h-36 lg:h-48 -mt-36 lg:-mt-48 ${
+          description ? "fadeIn" : "fadeOut"
+        } p-4`}
+      >
+        <div className="transform flex flex-col content-between text-xs lg:text-sm justify-between h-full">
+          <div>
             <div className="block font-bold uppercase">{artists}</div>
             <div className="block -mt-1">{trackName}</div>
 
-            <div>{children}</div>
+            <div className="mt-2">{children}</div>
+          </div>
 
-            <SubLink className="text-xs">Stream here</SubLink>
-          </div>
+          <SubLink size="xs" href={listenURL}>
+            Stream here
+          </SubLink>
         </div>
-      ) : (
-        <div className="bg-black bg-opacity-60 px-4 py-3 text-xs lg:text-sm w-3/4  backdrop-filter backdrop-blur-xl  -ml-2">
-          <div className="ml-2">
-            <div className="block font-bold uppercase">{artists}</div>
-            <div className="block -mt-1">{trackName}</div>
-          </div>
-        </div>
-      )}
+      </div>
     </div>
   );
 };

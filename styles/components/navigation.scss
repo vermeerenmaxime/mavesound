@@ -4,6 +4,8 @@
         text-decoration: none;
         position: relative;
 
+        transition: 0.2s ease all;
+
         &:after {
             position: absolute;
             content: "";
@@ -26,12 +28,18 @@
             width: 100%;
             background: color(light, 75);
         }
+        &:hover{
+            color:color(light,75);
+            // mix-blend-mode: overlay;
+        }
     }
     &__toggle {
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
+        transition: 0.2s ease all;
+        cursor: pointer;
         &:after {
             position: absolute;
             content: "";
@@ -51,22 +59,27 @@
             align-items: center;
             justify-content: center;
             transform: scale(0);
-            cursor: pointer;
+            
         }
-        &:hover:after,
+        // &:hover:after,
         &--selected:after {
             background: color(light, 35);
             transform: scale(1);
         }
+        &:hover,&--selected{
+            color:color(light,75);
+            // mix-blend-mode: overlay;
+        }
     }
 }
 .c-navigation {
-    max-width:400px;
+    max-width: 400px;
     color: color(dark, 85);
     background: color(light, 15);
-    position:absolute;
-    height:100vh;
-    z-index:1001;
-    
+    position: absolute;
+    height: 100vh;
+    z-index: 1001;
+    width: 12rem;
+
     // min-width:200px;
 }
