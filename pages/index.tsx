@@ -254,7 +254,7 @@ export default function Home() {
             fill="url(#linear-gradient)"
           />
         </svg> */}
-        
+
         <div
           className="c-main--parralello"
           style={{ marginRight: "0%" }}
@@ -494,7 +494,7 @@ export default function Home() {
             </div>
           </div>
           <div className="w-full sm:w-1/2 p-8 sm:p-24 sm:pl-0">
-            <h3 className="font-bold text-3xl">Who's Mave?</h3>
+            <h3 className="font-bold text-3xl">Who&apos;s Mave?</h3>
             <div className="mt-6 text-white text-opacity-90">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
               nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
@@ -553,22 +553,24 @@ export default function Home() {
         <div className="flex justify-between w-full">
           <div className="flex flex-col gap-2">
             <div className="font-bold uppercase gap-2 flex items-center -ml-6">
-            <svg
+              <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-4 w-4 transform rotate-45"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
                 <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-              </svg> Navigate{" "}
-              
+              </svg>{" "}
+              Navigate{" "}
             </div>
             {pages &&
               pages.map((page, index) => {
                 return (
-                  <a href="/" className="capitalize hover:underline text-white text-opacity-80">
-                    {page}
-                  </a>
+                  <Link key={index} href="/" passHref>
+                    <a className="capitalize hover:underline text-white text-opacity-80">
+                      {page}
+                    </a>
+                  </Link>
                 );
               })}
           </div>
@@ -589,7 +591,7 @@ export default function Home() {
             </svg>{" "}
             <br />
             by{" "}
-            <a href="/" className="font-medium hover:underline">
+            <a href="https://maveproductions.com" className="font-medium hover:underline">
               MaveProductions
             </a>
           </div>
