@@ -107,7 +107,7 @@ const SubLink = ({ children, className = "", href = "/", size = "sm" }) => {
 
 const SocialLink = ({ link, media, extraClass = "" }) => {
   return (
-    <a target="_blank" href={link}>
+    <a target="_blank" href={link} rel="noreferrer">
       <i
         className={`fab fa-${media} c-socials__icon transform ${extraClass} `}
       ></i>
@@ -216,7 +216,7 @@ export default function Home() {
                     famous festival, Mave started making his own music at the
                     age of 15. 4 years later, he already hit half a million
                     streams and released his very first own track called{" "}
-                    <b>'Who Are You'</b> in collaboration with Danish
+                    <b>&apos;Who Are You&apos;</b> in collaboration with Danish
                     singer-songwriter LauraBrown.
                   </div>
                   <br />
@@ -228,7 +228,7 @@ export default function Home() {
                   more.
                   <br />
                   <br />
-                  Make sure to keep an eye out on Mave. He’s ready to become a
+                  Make sure to keep an eye out on Mave. He&apos;s ready to become a
                   big <br />
                   inspiration for many others!
                 </div>
@@ -335,9 +335,9 @@ export default function Home() {
                   transform="translate(9.272 9.273)"
                   fill="none"
                   stroke="#fff"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                 />
                 <path
                   id="Path_8"
@@ -346,9 +346,9 @@ export default function Home() {
                   transform="translate(0 0)"
                   fill="none"
                   stroke="#fff"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
                 />
               </g>
             </svg>
