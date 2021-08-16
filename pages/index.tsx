@@ -339,6 +339,7 @@ export default function Home() {
                   strokeLinejoin="round"
                   strokeWidth="2"
                 />
+                
                 <path
                   id="Path_8"
                   data-name="Path 8"
