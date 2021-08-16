@@ -5,7 +5,7 @@ import Link from "next/link";
 // import InstagramIcon from "../src/svg/instagram-brands.svg";
 
 import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const pages = ["home", "music", "shows", "contact", "about"];
 const songs = ["Higher", "Who Are You"];
@@ -74,7 +74,7 @@ const Navigation = () => {
           </svg>
         </div>
       </div>
-      <SideNavigation className="slideInLeft"></SideNavigation>
+      {/* <SideNavigation className="slideInLeft"></SideNavigation> */}
     </>
   );
 };
@@ -121,40 +121,100 @@ const SideNavigation = ({ className }) => {
   const [toggle, setToggle] = useState(false);
   return (
     <aside
-      className={`c-navigation backdrop-filter backdrop-blur-xl p-12 flex flex-col justify-between ${className} ${
-        !toggle && "slideOutLeft"
+      className={`c-navigation backdrop-filter backdrop-blur-xl p-12 flex flex-row gap-8 justify-between ${className} ${
+        toggle && "slideOutLeft"
       }`}
     >
       <div className="flex flex-col uppercase font-semibold gap-5 text-white text-sm">
         {pages &&
           pages.map((page, index) => {
             return (
-              <NavigationLink
+              <a
                 key={index}
                 href={"/"}
-                selected={
-                  pageName === page
-                    ? true
-                    : index === 0 && pageName === ""
-                    ? true
-                    : false
-                }
+                // selected={
+                //   pageName === page
+                //     ? true
+                //     : index === 0 && pageName === ""
+                //     ? true
+                //     : false
+                // }
               >
                 {page}
-              </NavigationLink>
+              </a>
             );
           })}
-      </div>
-      <div onClick={() => (setToggle(false), console.log("hiƒ", toggle))}>
-        close
+        <hr className="opacity-20"></hr>
+        <div
+          onClick={() => (setToggle(false), console.log("hiƒ", toggle))}
+          className="flex gap-2 text-white cursor-pointer c-nav__toggle"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 "
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+              clipRule="evenodd"
+            />
+          </svg>
+          Close
+        </div>
       </div>
     </aside>
   );
 };
 
 export default function Home() {
+  const scrollVariables = useRef<any>();
+  const scrollThing = useRef<any>();
+  useEffect(() => {
+    scrollVariables.current.onscroll = () => {
+      let screenHeight = scrollVariables.current.clientHeight;
+    //   console.log(screenHeight);
+      //   let appHeight = scrollVariables.current.offsetHeight;
+      //   console.log(appHeight);
+
+      let trackScrollTop = scrollVariables.current.scrollTop;
+
+      if (trackScrollTop < screenHeight) {
+        scrollThing.current.style.marginRight = "-50px";
+        scrollThing.current.style.height = "130px";
+        scrollThing.current.style.width = "65%";
+        scrollThing.current.style.transform = "skew(-25deg)";
+      }
+      if (trackScrollTop > screenHeight - 100) {
+        scrollThing.current.style.marginRight = "25%";
+        scrollThing.current.style.height = "40%";
+        scrollThing.current.style.width = "65%";
+        scrollThing.current.style.transform = "skew(25deg)";
+      }
+      if (trackScrollTop > screenHeight * 2 - 100) {
+        scrollThing.current.style.marginRight = "35%";
+        scrollThing.current.style.height = "28%";
+        scrollThing.current.style.width = "80%";
+        scrollThing.current.style.transform = "skew(25deg)";
+      }
+      if (trackScrollTop > screenHeight * 3 - 100) {
+        scrollThing.current.style.marginRight = "35%";
+        scrollThing.current.style.height = "70%";
+        scrollThing.current.style.width = "80%";
+        scrollThing.current.style.transform = "skew(25deg)";
+      }
+      if (trackScrollTop > screenHeight * 3 + 100) {
+        scrollThing.current.style.marginRight = "65%";
+        scrollThing.current.style.height = "100%";
+        scrollThing.current.style.width = "100%";
+        scrollThing.current.style.transform = "skew(-15deg)";
+      }
+    };
+  }, []);
+
   return (
-    <div className="c-app">
+    <div className="c-app" ref={scrollVariables}>
       <Head>
         <title>Mave :: Home</title>
         <meta
@@ -194,7 +254,11 @@ export default function Home() {
             fill="url(#linear-gradient)"
           />
         </svg>
-        <div className="c-main--parralello"></div>
+        <div
+          className="c-main--parralello"
+          style={{ marginRight: "0%" }}
+          ref={scrollThing}
+        ></div>
         <div className="c-main__content">
           <Navigation></Navigation>
 
@@ -228,8 +292,8 @@ export default function Home() {
                   more.
                   <br />
                   <br />
-                  Make sure to keep an eye out on Mave. He&apos;s ready to become a
-                  big <br />
+                  Make sure to keep an eye out on Mave. He&apos;s ready to
+                  become a big <br />
                   inspiration for many others!
                 </div>
                 <SubLink href={"/"}>Learn More</SubLink>
@@ -275,9 +339,10 @@ export default function Home() {
         </div>
       </main>
       <div className="c-music flex items-center justify-center flex-col ">
-        <h1 className="text-4xl flex font-bold -mt-4 items-center w-2/12 justify-between">
+        <h1 className="text-4xl flex font-bold -mt-4 items-center justify-between space-x-6">
           <MusicNavigatorIcon direction="right" />
-          Music <MusicNavigatorIcon enabled={true} direction="left" />
+          <div>Music</div>
+          <MusicNavigatorIcon enabled={true} direction="left" />
         </h1>
         <div className="mt-4 grid items-center w-11/12  sm:w-10/12 md:w-9/12 max-w-5xl gap-4 grid-rows-3 sm:grid-rows-2 grid-cols-2 sm:grid-cols-3">
           {/* {songs &&
@@ -307,14 +372,14 @@ export default function Home() {
             rows={4}
           ></textarea>
           <input
-            type="text"
+            type="email"
             className="c-input mt-4"
             placeholder="Email address.."
           ></input>
           <button className="c-button mt-8">Send</button>
         </div>
         <div className="mt-8 sm:mt-24">
-          <div className="items-center font-medium gap-4 text-white text-opacity-80 hidden sm:flex">
+          <div className="items-center font-medium gap-3 text-white text-opacity-80 hidden sm:flex">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="26.543"
@@ -339,7 +404,7 @@ export default function Home() {
                   strokeLinejoin="round"
                   strokeWidth="2"
                 />
-                
+
                 <path
                   id="Path_8"
                   data-name="Path 8"
@@ -355,7 +420,7 @@ export default function Home() {
             </svg>
             or just write an old fashioned email..
           </div>
-          <div className="mt-4 flex gap-6 text-sm font-semibold mix-blend-overlay sm:items-center flex-col sm:flex-row">
+          <div className="mt-4 flex gap-2 sm:gap-6 text-sm font-semibold mix-blend-overlay sm:items-center flex-col sm:flex-row">
             <div className="flex items-center gap-2">
               {" "}
               <svg
@@ -413,32 +478,158 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="c-x">Who is Mave</div>
-
-      <footer className="c-footer">Paginas</footer>
+      <div className="c-about">
+        <div className="c-about--overlay-purple flex">
+          <div className="w-1/2 grid p-12 sm:p-24 grid-rows-3 grid-cols-2 gap-4 flex-wrap">
+            <div className="bg-black rounded-md col-span-2 bg-opacity-70 ">ja</div>
+            <div className="bg-black rounded-md row-span-2 bg-opacity-70 ">hoi</div>
+            <div className="bg-black rounded-md bg-opacity-70 ">xd</div>
+            <div className="bg-black rounded-md bg-opacity-70 ">jo</div>
+            <div className="col-span-2 grid gap-4 grid-cols-4">
+              <div className="bg-black rounded-md h-24 bg-opacity-70 ">hoi</div>
+              <div className="bg-black rounded-md h-24 bg-opacity-70 ">hoi</div>
+              <div className="bg-black rounded-md h-24 bg-opacity-70 ">hoi</div>
+              <div className="bg-black rounded-md h-24 bg-opacity-70 ">hoi</div>
+            </div>
+          </div>
+          <div className="w-1/2 p-24 pl-0">
+            <h3 className="font-bold text-3xl">Who's Mave?</h3>
+            <div className="mt-6">
+              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
+              erat, sed diam voluptua. At vero eos et accusam et justo duo
+              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
+              sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+              amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+              invidunt ut labore et dolore magna aliquyam erat, sed diam
+              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+              dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+              magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+              justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+              takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
+              sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+              voluptua.{" "}
+            </div>
+            <div className="text-sm mt-4">
+              At vero eos et accusam et justo duo dolores et ea rebum. Stet
+              clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+              dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+              magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+              justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+              takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
+              sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+              dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+              magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+              justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+              takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
+              sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+              dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
+              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
+              magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
+              justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+              takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
+              sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
+              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
+              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
+              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
+              dolor sit
+            </div>
+          </div>
+        </div>
+      </div>
+      <footer className="c-footer px-12 sm:px-24 py-16 flex justify-between w-full">
+        <div>paper</div>
+        <div className="text-right text-white text-opacity-50">
+          Website made with{" "}
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5 inline text-red-600"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z"
+              clipRule="evenodd"
+            />
+          </svg>{" "}
+          <br />
+          by <a href="/" className="font-medium hover:underline">MaveProductions</a>
+        </div>
+      </footer>
     </div>
   );
 }
 
 const InputSelect = () => {
+  const [toggleSelected, setToggleSelected] = useState(false);
+  const [inputSelected, setInputSelected] = useState("");
+
+  const options = ["Promo", "Management", "Demo", "Other"];
   return (
-    <div className="c-input c-input--option flex justify-between">
-      <div>Select subject</div>
-      <div>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-5 w-5"
-          viewBox="0 0 20 20"
-          fill="currentColor"
+    <>
+      <div
+        className="c-input c-input--option flex justify-between"
+        onClick={() => {
+          setToggleSelected(!toggleSelected);
+        }}
+        onMouseEnter={() => {
+          setToggleSelected(true);
+        }}
+        onMouseLeave={() => {
+          setToggleSelected(false);
+        }}
+      >
+        <div>{inputSelected.length <= 0 ? "Select option" : inputSelected}</div>
+        <div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-5 w-5"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fillRule="evenodd"
+              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+              clipRule="evenodd"
+            />
+          </svg>
+        </div>
+        <div
+          className={`c-option ${
+            toggleSelected
+              ? "c-option--selected slideFadeDown"
+              : "c-option--unselected"
+          }`}
         >
-          <path
-            fillRule="evenodd"
-            d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-            clipRule="evenodd"
-          />
-        </svg>
+          {options &&
+            options.map((option, index) => {
+              return (
+                <div
+                  key={index}
+                  className="c-option__select"
+                  onClick={() => {
+                    setInputSelected(option);
+                  }}
+                >
+                  {option}
+                </div>
+              );
+            })}
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 
