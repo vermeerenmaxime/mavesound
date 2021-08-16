@@ -5,6 +5,10 @@ import Link from "next/link";
 // import InstagramIcon from "../src/svg/instagram-brands.svg";
 
 import { useRouter } from "next/router";
+import { useState } from "react";
+
+const pages = ["home", "music", "shows", "contact", "about"];
+const songs = ["Higher", "Who Are You"];
 
 const NavigationLink = ({ children, selected = false, href = "/" }) => {
   return (
@@ -26,22 +30,25 @@ const Navigation = () => {
 
   return (
     <div className="c-main__navigation c-nav p-12 px-12 lg:px-24 text-sm flex space-x-12 justify-end items-center uppercase font-semibold ">
-        <div className="space-x-12 hidden sm:block">
-      <NavigationLink href={"/"} selected={pageName === "" ? true : false}>
-        Home
-      </NavigationLink>
-      <NavigationLink selected={pageName === "music" ? true : false}>
-        Music
-      </NavigationLink>
-      <NavigationLink selected={pageName === "shows" ? true : false}>
-        Shows
-      </NavigationLink>
-      <NavigationLink selected={pageName === "contact" ? true : false}>
-        Contact
-      </NavigationLink>
-      <NavigationLink selected={pageName === "about" ? true : false}>
-        About
-      </NavigationLink>
+      <div className="space-x-12 hidden sm:block">
+        {pages &&
+          pages.map((page, index) => {
+            return (
+              <NavigationLink
+                key={index}
+                href={"/"}
+                selected={
+                  pageName === page
+                    ? true
+                    : index === 0 && pageName === ""
+                    ? true
+                    : false
+                }
+              >
+                {page}
+              </NavigationLink>
+            );
+          })}
       </div>
       <div className="c-nav__toggle">
         <svg
@@ -63,10 +70,12 @@ const Navigation = () => {
   );
 };
 
-const SubLink = ({ children, href = "/" }) => {
+const SubLink = ({ children, className, href = "/" }) => {
   return (
     <Link href={`${href}`}>
-      <a className="flex uppercase font-bold tracking-widest text-sm items-center mt-8">
+      <a
+        className={`flex uppercase font-bold tracking-widest text-sm items-center mt-8 ${className}`}
+      >
         {children}{" "}
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -127,7 +136,7 @@ export default function Home() {
               gradientUnits="objectBoundingBox"
             >
               <stop offset="0" stopColor="#fff" />
-              <stop offset="1" stopColor="gray" stop-opacity="0" />
+              <stop offset="1" stopColor="gray" stopOpacity="0" />
             </linearGradient>
           </defs>
           <path
@@ -219,11 +228,106 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <div className="c-y">Music</div>
+      <div className="c-music flex items-center justify-center flex-col ">
+        <h1 className="text-4xl flex font-bold -mt-4 items-center w-2/12 justify-between">
+          <MusicNavigatorIcon direction="right" />
+          Music <MusicNavigatorIcon enabled={true} direction="left" />
+        </h1>
+        <div className="mt-4 grid items-center w-11/12  sm:w-10/12 md:w-9/12 max-w-5xl gap-4 grid-rows-3 sm:grid-rows-2 grid-cols-2 sm:grid-cols-3">
+          {/* {songs &&
+            songs.map((song, index) => {
+              return <>hi</>;
+            })} */}
+          <MusicCover></MusicCover>
+          <MusicCover></MusicCover>
+          <MusicCover></MusicCover>
+          <MusicCover></MusicCover>
+          <MusicCover></MusicCover>
+          <MusicCover></MusicCover>
+        </div>
+        <div className="mt-8 flex space-x-2">
+          <MusicNavigatorDot enabled={true} />
+          <MusicNavigatorDot enabled={false} />
+          <MusicNavigatorDot enabled={false} />
+        </div>
+      </div>
       <div className="c-x">Contact</div>
       <div className="c-x">Who is Mave</div>
 
       <footer className="c-footer">Paginas</footer>
+      <aside className="c-navigation backdrop-filter backdrop-blur-xl"></aside>
     </div>
   );
 }
+
+const MusicNavigatorDot = ({ enabled = false }) => {
+  return (
+    <div
+      className={`h-2 w-2 bg-white ${
+        enabled ? "bg-opacity-75" : "bg-opacity-25 cursor-pointer"
+      } rounded-xl`}
+    ></div>
+  );
+};
+
+const MusicNavigatorIcon = ({ direction = "left", enabled = false }) => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      className={`flex items-center justify-center h-5 w-5 mt-2 text-white ${
+        enabled ? "text-opacity-75" : "text-opacity-25"
+      } hover:bg-white rounded-xl cursor-pointer hover:text-black hover:text-opacity-50 transition duration-200 ease-in-out ${
+        direction === "right" && "transform rotate-180"
+      }`}
+      viewBox="0 0 20 20"
+      fill="currentColor"
+    >
+      <path
+        fillRule="evenodd"
+        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+};
+
+const MusicCover = ({
+  backgroundImage = "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+  trackName = "No trackname",
+  children = "No description",
+  artists = "Mave",
+  listenURL = "",
+}) => {
+  const [description, setDescription] = useState(false);
+  return (
+    <div
+      className="h-36 lg:h-48 bg-white rounded-sm overflow-hidden flex items-end"
+      style={{
+        backgroundImage: `url(${backgroundImage})`,
+        backgroundSize: "cover",
+      }}
+      onMouseEnter={() => setDescription(true)}
+      onMouseLeave={() => setDescription(false)}
+    >
+      {description ? (
+        <div className="bg-white bg-opacity-25 p-4 text-xs transform w-3/4 h-full backdrop-filter backdrop-blur-xl">
+          <div className="transform flex flex-col">
+            <div className="block font-bold uppercase">{artists}</div>
+            <div className="block -mt-1">{trackName}</div>
+
+            <div>{children}</div>
+
+            <SubLink className="text-xs">Stream here</SubLink>
+          </div>
+        </div>
+      ) : (
+        <div className="bg-black bg-opacity-60 px-4 py-3 text-xs lg:text-sm w-3/4  backdrop-filter backdrop-blur-xl  -ml-2">
+          <div className="ml-2">
+            <div className="block font-bold uppercase">{artists}</div>
+            <div className="block -mt-1">{trackName}</div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+};
