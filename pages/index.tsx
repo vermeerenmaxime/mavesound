@@ -227,7 +227,7 @@ export default function Home() {
 
       <main className="c-main">
         <div className="c-main--overlay-green"></div>
-        <svg
+        {/* <svg
           className="c-main--overlay-arrow md:scale-50"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1146.35 1080.4"
@@ -253,7 +253,8 @@ export default function Home() {
             transform="translate(-350 -2223.157)"
             fill="url(#linear-gradient)"
           />
-        </svg>
+        </svg> */}
+        
         <div
           className="c-main--parralello"
           style={{ marginRight: "0%" }}
