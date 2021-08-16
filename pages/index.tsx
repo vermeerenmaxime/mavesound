@@ -145,7 +145,7 @@ export default function Home() {
 
           <div className="px-12 lg:px-24 h-full flex">
             <div className="grid w-full sm:w-11/12 lg:w-6/12 content-between h-full">
-              <div className="-mb-8 py-12">
+              <div className="-mb-8 py-12 -mt-12 sm:-mt-0">
                 <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold -ml-1">
                   Mave
                 </div>
