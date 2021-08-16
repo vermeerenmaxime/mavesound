@@ -25,7 +25,8 @@ const Navigation = () => {
   let pageName = router.pathname.substring(1, router.pathname.length);
 
   return (
-    <div className="c-main__navigation c-nav p-12 px-12 lg:px-24 text-sm flex justify-end items-center space-x-12 uppercase font-semibold ">
+    <div className="c-main__navigation c-nav p-12 px-12 lg:px-24 text-sm flex space-x-12 justify-end items-center uppercase font-semibold ">
+        <div className="space-x-12 hidden sm:block">
       <NavigationLink href={"/"} selected={pageName === "" ? true : false}>
         Home
       </NavigationLink>
@@ -41,6 +42,7 @@ const Navigation = () => {
       <NavigationLink selected={pageName === "about" ? true : false}>
         About
       </NavigationLink>
+      </div>
       <div className="c-nav__toggle">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -124,8 +126,8 @@ export default function Home() {
               y2="0.5"
               gradientUnits="objectBoundingBox"
             >
-              <stop offset="0" stop-color="#fff" />
-              <stop offset="1" stop-color="gray" stop-opacity="0" />
+              <stop offset="0" stopColor="#fff" />
+              <stop offset="1" stopColor="gray" stop-opacity="0" />
             </linearGradient>
           </defs>
           <path
@@ -142,7 +144,7 @@ export default function Home() {
           <Navigation></Navigation>
 
           <div className="px-12 lg:px-24 h-full flex">
-            <div className="grid w-11/12 lg:w-6/12 content-between h-full">
+            <div className="grid w-full sm:w-11/12 lg:w-6/12 content-between h-full">
               <div className="-mb-8 py-12">
                 <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold -ml-1">
                   Mave
@@ -150,7 +152,7 @@ export default function Home() {
                 <div className="text-xs md:text-sm xl:text-sm mt-8 mb-3 opacity-80">
                   Maxime Vermeeren, better known by his stage name <b>Mave</b>{" "}
                   is a 19 year old DJ/producer from Belgium.
-                  <>
+                  <div className="hidden sm:inline">
                     In march 2020 he released his very first track with{" "}
                     <b>Sony Music</b>.<br />
                     <br />
@@ -161,7 +163,7 @@ export default function Home() {
                     streams and released his very first own track called{" "}
                     <b>'Who Are You'</b> in collaboration with Danish
                     singer-songwriter LauraBrown.
-                  </>
+                  </div>
                   <br />
                   <br />
                   You can describe his music genre as modern <b>house</b> with a{" "}
@@ -182,8 +184,8 @@ export default function Home() {
               <img className="c-main__image"></img>
             </div>
           </div>
-          <div className="flex items-center space-between gap-20">
-            <div className="px-12 lg:px-24 text-2xl lg:text-3xl py-24 c-socials space-x-5 ">
+          <div className="flex items-center justify-end sm:justify-start gap-20 ">
+            <div className="px-12 lg:px-24 mb-0 sm:mb-4 text-2xl lg:text-3xl py-24 c-socials space-x-5 float-right sm:float-left">
               <SocialLink
                 link="https://www.instagram.com/mavesound/"
                 media="instagram"

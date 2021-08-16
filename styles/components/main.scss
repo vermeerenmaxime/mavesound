@@ -13,7 +13,7 @@
         width: 100%;
 
         color: color(light, 100);
-        grid-template-rows: max-content auto 16rem;
+        grid-template-rows: max-content auto 8rem;
         // margin-bottom:-100vh;
         z-index: 1;
     }
@@ -51,17 +51,18 @@
     }
 
     &--parralello {
-        width: 30%;
-        height: 25%;
+        width: 400px;
+        height: 130px;
         transform: skew(-25deg);
         // background: color(light);
         mix-blend-mode: overlay;
 
-        @include gradient(light, light, 35, 35, 0, 35%);
+        @include gradient(light, light, 35, 100, 0, 35%);
         position: absolute;
         bottom: 0;
-        right: 0;
-        margin-right: -70px;
+        right: 30px;
+        overflow:hidden;
+        // margin-right: -70px;
     }
     &--parralello2 {
         width: 400px;
