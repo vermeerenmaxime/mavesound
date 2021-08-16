@@ -1,0 +1,27 @@
+:root {
+  --light: 255, 255, 255;
+  --dark: 00, 00, 00;
+
+  --blue: 64, 112, 242;
+
+  --purple: 153, 54, 226;
+
+  --green: 64,242,180;
+
+  --darkblue: #12192e;
+  --almostblack: #141414;
+  
+  --gradient-black-blue: linear-gradient(40deg, var(--darkblue), var(--almostblack));
+  --gradient-blue-purple: linear-gradient(170deg, var(--blue), var(--purple));
+  --gradient-black-gray: linear-gradient(170deg, var(--dark), var(--dark-100););
+}
+
+// $colors:(blue:var(--blue),purple:var(--purple));
+
+@function color($color, $opacity: 100) {
+  @return rgba(var(--#{$color}), $opacity/100);
+}
+
+@mixin gradient($color1, $color2, $deg: 0, $opacity1: 100, $opacity2: 100, $perc:50) {
+  background: linear-gradient(#{$deg}deg,color($color1, $opacity1) $perc , color($color2, $opacity2) #{105%-$perc});
+} ;

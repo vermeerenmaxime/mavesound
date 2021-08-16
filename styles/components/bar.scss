@@ -1,0 +1,110 @@
+.c-chart {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
+  transition: all 0.2s ease-out;
+  height: 100%;
+  //   background: blue;
+  &__bar {
+    // background: red;
+    display: flex;
+    height: 100%;
+    justify-content: center;
+    &--spacebetween {
+      justify-content: space-between;
+    }
+    width: 100%;
+    gap: 0.25rem;
+    .c-bar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      &--lg {
+        --bar-width: 2rem;
+      }
+      &--md {
+        --bar-width: 1.75rem;
+      }
+      &--sm {
+        --bar-width: 1rem;
+      }
+      &__line {
+        border-radius: 4px;
+        // transition: 1s ease;
+        // transition-delay: 0.2s;
+        width: 100%;
+
+        &-holder {
+          background: linear-gradient(var(--dark200), var(--dark500));
+
+          width: var(--bar-width);
+          border-radius: 4px;
+          height: 100%;
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-end;
+        }
+        &--fill-blue {
+          background: linear-gradient(
+              180deg,
+              map-get($secondary-colors, "bluetint") 0%,
+              var(--dark500) 100%
+            )
+            0% 0% no-repeat padding-box;
+        }
+        &--fill-green {
+          background: linear-gradient(
+              180deg,
+              map-get($secondary-colors, "greentint") 0%,
+              var(--dark500) 100%
+            )
+            0% 0% no-repeat padding-box;
+        }
+        &--fill-orange {
+          background: linear-gradient(
+              180deg,
+              map-get($secondary-colors, "orangetint") 0%,
+              var(--dark500) 100%
+            )
+            0% 0% no-repeat padding-box;
+        }
+        &--fill-red {
+          background: linear-gradient(
+              180deg,
+              map-get($secondary-colors, "redtint") 0%,
+              var(--dark500) 100%
+            )
+            0% 0% no-repeat padding-box;
+        }
+      }
+      &__value {
+        margin-top: -1rem;
+        margin-bottom: 0.5rem;
+        font-family: $Sohne-Halbfett;
+        font-size: 0.75rem;
+        min-width: 3.25rem;
+        display: flex;
+        color: var(--text-color);
+        justify-content: center;
+      }
+      &__maxValue {
+        margin: 0 0 0.25rem;
+        font-size: 0.625rem;
+        color: var(--dark400);
+      }
+    }
+  }
+  &-fade {
+    @include fadeIn;
+    transition: all 0.2s ease-out;
+    height: 100%;
+  }
+  &--selected {
+    opacity: 1;
+  }
+  &--unselected {
+    opacity: 0.4;
+  }
+}

@@ -1,0 +1,6 @@
+@mixin neon-text($color) {
+    text-shadow: 0px 0px 5px $color;
+}
+@mixin fadeIn{
+    animation: fadeIn 0.2s ease-out;
+}

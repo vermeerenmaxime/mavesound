@@ -1,0 +1,62 @@
+.c-nav {
+    color: color(light, 95);
+    &__link {
+        text-decoration: none;
+        position: relative;
+
+        &:after {
+            position: absolute;
+            content: "";
+            height: 0.125em;
+            bottom: -4px;
+            border-radius: 50px;
+
+            left: 0;
+            right: 0;
+            width: 0%;
+            background: color(light, 15);
+            will-change: background, width;
+            mix-blend-mode: overlay;
+
+            transition: 0.2s ease all;
+        }
+
+        &:hover:after,
+        &--selected:after {
+            width: 100%;
+            background: color(light, 75);
+        }
+    }
+    &__toggle {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        &:after {
+            position: absolute;
+            content: "";
+            height: 4em;
+            border-radius: 50px;
+            // left: 0;
+            // right: 0;
+            // top:1px;
+            margin-top:1px;
+            width: 4em;
+            background: color(light, 15);
+            will-change: background, transform;
+            mix-blend-mode: overlay;
+
+            transition: 0.2s ease all;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: scale(0);
+            cursor: pointer;
+        }
+        &:hover:after,
+        &--selected:after {
+            background: color(light, 35);
+            transform: scale(1);
+        }
+    }
+}

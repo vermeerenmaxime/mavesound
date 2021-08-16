@@ -1,0 +1,143 @@
+.c-select {
+  background: var(--dark200);
+  padding: 0.25rem 0.25rem 0.25rem 1rem;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.75rem;
+  font-family: $Sohne-Buch;
+  color: var(--text-color);
+  outline: none;
+  box-sizing: border-box;
+  width: 10rem;
+  transition: width 0.2s ease;
+  will-change: width;
+  cursor: pointer;
+  height: 3em;
+
+  &:hover,
+  &:active,
+  &:focus {
+    & + .c-select-dropdown__title-icon {
+      --icon-background: var(--blue100);
+    }
+  }
+
+  &-dropdown {
+    width: 10rem;
+    border-radius: 4px;
+    background: var(--dark200);
+    position: absolute;
+    padding: 0.5rem;
+    z-index: 11;
+    margin-left: -1rem;
+    margin-top: 0.75rem;
+    box-sizing: border-box;
+    animation: fadeIn 0.2s ease-out;
+    &__item {
+      padding: 0.5rem;
+      border-radius: 4px;
+      transition: background 0.2s ease;
+      will-change: background;
+      opacity: 0.7;
+      &:not(:first-child) {
+        margin-top: 0.25rem;
+      }
+      &--active,
+      &:hover,
+      &:focus,
+      &:active {
+        background: var(--blue100);
+        color: white;
+      }
+      &--active {
+        opacity: 1;
+      }
+    }
+    &__title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      height: 100%;
+      gap: 0.5rem;
+      &-text {
+        width: 5rem;
+      }
+      &-icon {
+        &:hover,
+        &:focus,
+        &:active,
+        &--selected {
+          --icon-background: var(--blue100);
+          stroke: white;
+        }
+        &--rotate {
+          transform: rotate(180deg);
+        }
+        // margin: 0.25rem;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        width: 12px;
+        height: 12px;
+        padding: 0.25rem;
+        margin: 0 0.25rem;
+        background: var(--icon-background);
+        box-shadow: 0 0 10px var(--dark200);
+        cursor: pointer;
+        stroke: var(--text-color);
+        transition: background 0.2s ease-out, transform 0.2s ease-out;
+        will-change: background, transform;
+      }
+    }
+    &--click {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 10;
+      cursor: pointer;
+      background: rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.2s ease-out;
+    }
+  }
+
+  &__label {
+    float: right;
+    position: absolute;
+  }
+
+  &-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.5);
+    animation: fadeIn 0.2s ease-out;
+    &--click {
+      position: fixed;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      width: 100%;
+      height: 100vh;
+      z-index: 11;
+      cursor: pointer;
+    }
+  }
+  ::placeholder {
+    color: var(--text-color);
+  }
+}

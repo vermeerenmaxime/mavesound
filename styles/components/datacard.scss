@@ -1,0 +1,547 @@
+@import "../settings/colors.scss";
+
+// datacard component
+.c-datacard {
+  border-radius: 0.5rem;
+
+  color: var(--text-color);
+  background-color: var(--dark100);
+  width: 8rem;
+  height: 6rem;
+  box-sizing: border-box;
+  display: grid;
+
+  @include xl {
+    width: 10rem;
+    height: 8rem;
+  }
+
+  &--sm {
+    justify-content: center;
+    align-content: center;
+
+    --datacard-circle-width: 100%;
+  }
+
+  &--md {
+    height: 100%;
+    width: 100%;
+    --datacard-circle-width: 65%;
+  }
+
+  &__title {
+    font-size: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-family: $Sohne-Halbfett;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+  }
+  &__value {
+    display: flex;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+  &__circle {
+    // background: green;
+    justify-content: center;
+    display: flex;
+    align-items: center;
+  }
+
+  &__stat {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 100%;
+    font-size: 1.125em;
+    padding: 0.75rem 1rem;
+    box-sizing: border-box;
+    gap: 2rem;
+    // background: red;
+
+    &-children {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      &__name {
+        color: var(--dark300);
+        font-family: $Sohne-Halbfett;
+        text-transform: uppercase;
+        font-size: 0.875em;
+      }
+
+      &__value {
+        color: var(--text-color);
+        font-size: 1rem;
+      }
+    }
+  }
+
+  // Circle component
+  .c-circle {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+
+    padding: 0rem 1.5rem;
+
+    flex-direction: column;
+
+    box-sizing: border-box;
+    width: var(--datacard-circle-width);
+
+    &--sm {
+      max-width: 14rem;
+      min-height: 10rem;
+      @include xl {
+        max-width: 15rem;
+      }
+      --circle-holder-top: -0.5rem;
+    }
+    &--md {
+      min-width: 12rem;
+      max-width: 16rem;
+      min-height: 8rem;
+      max-height: 10rem;
+      @include xl {
+        //   max-width: 35rem;
+        max-width: 16rem;
+        // min-height: 13rem;
+      }
+      --circle-holder-top: -1.75rem;
+    }
+
+    &__outer,
+    &__inner {
+      width: 100%;
+
+      transform: rotate(-127deg);
+      filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.3));
+      &--round {
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.35s;
+      }
+    }
+    &__inner {
+      margin-left: -100%;
+    }
+    &__outer {
+      stroke: var(--dark200);
+    }
+    &-holder {
+      //   background:red;
+      margin-top: var(--circle-holder-top);
+      @include xl {
+        margin-top: var(--circle-holder-top);
+        //   max-width: 35rem;
+        // max-width: 19rem;
+        // min-height: 13rem;
+      }
+    }
+    &-text {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      font-family: $Sohne-Halbfett;
+
+      &--sm {
+        margin-top: -105%;
+        // font-size: 0.75rem;
+
+        --circle-abr-size: 0.75rem;
+        --circle-abr-top: 2.875rem;
+        --circle-value-top: 0.25rem;
+        --circle-value-size: 0.875em;
+        --circle-percentage-top: 1.35rem;
+        --circle-percentage-size: 0.875em;
+
+        @include xl {
+          margin-top: -95%;
+          --circle-abr-size: 1rem;
+          //   --circle-abr-top: 2.875rem;
+          --circle-value-size: 1.125rem;
+          --circle-percentage-size: 1.125rem;
+          --circle-percentage-top: 2.5rem;
+        }
+      }
+      &--md {
+        margin-top: -62.5%;
+        // font-size: 0.875em;
+
+        --circle-abr-size: 0.75rem;
+        --circle-abr-top: 2.925rem;
+        --circle-value-top: 0rem;
+        --circle-value-size: 1rem;
+        --circle-percentage-top: 2rem;
+        --circle-percentage-size: 0.875em;
+
+        @include xl {
+          --circle-value-size: 1.25rem;
+          --circle-percentage-size: 1.125rem;
+          --circle-percentage-top: 3rem;
+        }
+      }
+      &__abr {
+        margin-top: var(--circle-abr-top);
+        font-size: var(--circle-abr-size);
+      }
+      &__value {
+        margin-top: var(--circle-value-top);
+        font-size: var(--circle-value-size);
+      }
+      &__percentage {
+        margin-top: var(--circle-percentage-top);
+        font-size: var(--circle-percentage-size);
+        &--blue {
+          color: map-get($secondary-colors, bluetint);
+          filter: drop-shadow(0 0 0.2rem rgba(5, 114, 255, 0.149));
+        }
+        &--green {
+          color: map-get($secondary-colors, greentint);
+          filter: drop-shadow(0 0 0.2rem rgba(32, 217, 38, 0.15));
+        }
+        &--orange {
+          color: map-get($secondary-colors, orangetint);
+          filter: drop-shadow(0 0 0.2rem rgba(245, 172, 11, 0.15));
+        }
+        &--red {
+          color: map-get($secondary-colors, redtint);
+          filter: drop-shadow(0 0 0.2rem rgba(216, 53, 32, 0.15));
+        }
+      }
+    }
+  }
+}
+
+.c-card {
+  --card-title-transform: uppercase;
+  --card-gap: 0.25em;
+  --card-padding: .5em 1.5em;
+  --card-width: auto;
+  --card-height: auto;
+
+  display: grid;
+  padding: var(--card-padding);
+  box-sizing: border-box;
+
+  border-radius: 8px;
+
+  color: var(--text-color);
+  background-color: var(--dark100);
+
+  grid-template-rows: 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr;
+
+  font-size: 0.75rem;
+  column-gap: 0.5em;
+
+  @include sm {
+    font-size: 0.875rem;
+  }
+  @include md {
+    font-size: 0.925rem;
+  }
+  @include lg {
+    font-size: 1rem;
+  }
+  @include xl {
+    font-size: 1.125rem;
+  }
+  @include xxl {
+    font-size: 1.5rem;
+  }
+
+  &--spanX {
+    &-1 {
+      grid-column: span 1;
+    }
+    &-2 {
+      grid-column: span 2;
+    }
+  }
+  &--spanY {
+    &-1 {
+      grid-row: span 1;
+    }
+    &-2 {
+      grid-row: span 2;
+    }
+  }
+
+  &--1-2 {
+    grid-template-rows: 1.5fr 1fr;
+    grid-template-columns: 1fr 1fr;
+    --card-column-span: span 2;
+    --card-name-size--first: 0.875em;
+    --card-value-size--first: 2.5em;
+  }
+  &--1-3 {
+    grid-template-rows: 1.5fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr;
+
+    --card-column-span: span 3;
+    --card-name-size--first: 0.875em;
+    --card-value-size--first: 2.5em;
+  }
+  &--1-4 {
+    grid-template-rows: 1.5fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+
+    --card-column-span: span 4;
+    --card-name-size--first: 0.875em;
+    --card-value-size--first: 2em;
+  }
+
+  &--2-2 {
+    grid-template-columns: 1fr 1fr;
+    --card-column-span: 0;
+  }
+  &--2 {
+    grid-template-rows: 1.5fr 1fr;
+    grid-template-columns: 1fr;
+
+    --card-column-span: span 4;
+    --card-name-size--first: 0.875em;
+    --card-value-size--first: 2em;
+
+    column-gap: 0;
+  }
+  &--1 {
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+
+    --card-column-span: span 4;
+    --card-name-size--first: 1em;
+    --card-value-size--first: 3.5em;
+    &-sm {
+      --card-padding: 1rem;
+      --card-width: 7em;
+      --card-height: 4rem;
+
+      --card-name-size--first: 0.875rem;
+      --card-value-size--first: 1.5rem;
+      --card-gap: 0.5rem;
+      // --card-padding: 2rem;
+
+      @include xl {
+        --card-width: 8rem;
+        --card-height: 5rem;
+
+        --card-name-size--first: 1rem;
+        --card-value-size--first: 2rem;
+      }
+    }
+    &-md {
+      // --card-width: 15rem;
+    }
+  }
+  &--circle {
+    --card-title-transform: capitalize;
+    grid-template-rows: auto;
+    grid-template-columns: auto;
+
+    --card-column-span: span 4;
+    --card-name-size--first: 0.875em;
+    --card-value-size--first: 1em;
+    --card-gap: 0.75em;
+
+    &-sm {
+      --circle-size: 7.5em;
+      --circle-value-size: 1em;
+      --circle-perc-size: 0.875em;
+      --circle-title-size: 0.875em;
+    }
+    &-md {
+      --circle-size: 8.5em;
+      --circle-value-size: 1.125em;
+      --circle-perc-size: 0.825em;
+      --circle-title-size: 0.875em;
+    }
+    &-lg {
+      --circle-size: 15em;
+      --circle-value-size: 2.25em;
+      --circle-perc-size: 1.25em;
+      --circle-title-size: 1.5em;
+
+      --card-name-size--first: 1.25em;
+      --card-value-size--first: 2em;
+    }
+  }
+
+  // row-gap:.75em;
+
+  &-item {
+    --card-name-size: 0.75em;
+    --card-value-size: 1.5em;
+
+    &:first-child {
+      grid-column: var(--card-column-span);
+      --card-name-size: var(--card-name-size--first);
+      --card-value-size: var(--card-value-size--first);
+
+      color: var(--text-color);
+      border-radius: 8px;
+      .c-card-item__unit {
+        font-size: 0.75rem;
+      }
+      justify-content: center;
+    }
+    &--left {
+      // align-self: flex-start;
+      padding: 0 0 0 1rem;
+    }
+    &--right {
+      // align-self: flex-end;
+      padding: 0 1rem 0 0;
+    }
+
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: column;
+    gap: var(--card-gap);
+
+    width: var(--card-width);
+    height: var(--card-height);
+
+    text-align: center;
+    font-family: $Sohne-Halbfett;
+    box-sizing: border-box;
+
+    &__name {
+      font-size: var(--card-name-size);
+      text-transform: var(--card-title-transform);
+      color: var(--light200);
+      letter-spacing: 1px;
+      justify-self: flex-end;
+      margin-bottom: 0.5rem;
+    }
+    &__value {
+      font-size: var(--card-value-size);
+      display: flex;
+      flex-direction: column;
+
+      &-unit {
+        font-size: 0.5em;
+      }
+    }
+    &__unit {
+      color: var(--light200);
+      font-size: 0.625em;
+      text-transform: uppercase;
+      margin-top: 0.25em;
+      // height: 2em;
+    }
+    &__target {
+      color: var(--dark400);
+      font-size: 0.825em;
+      align-self: center;
+    }
+    &__circle {
+      &:first-child {
+        grid-column: var(--card-column-span);
+        --card-name-size: var(--card-name-size);
+        --card-value-size: var(--card-value-size);
+      }
+      &-holder {
+        display: grid;
+        width: 100%;
+        height: 100%;
+        // margin-top: -0.5em;
+        grid-template-rows: auto;
+      }
+      justify-self: center;
+      grid-column: span 2;
+
+      // background: rgba(255, 255, 255, 0.1);
+
+      height: calc(var(--circle-size) - 1.5em);
+      width: calc(var(--circle-size));
+      box-sizing: border-box;
+      display: grid;
+      justify-content: center;
+
+      &-names {
+        display: flex;
+        gap: 0.25em;
+        // font-size: 1em;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: center;
+
+        --card-name-size: 0.75em;
+      }
+      &-inner,
+      &-outer {
+        transform: rotate(-127deg);
+        height: var(--circle-size);
+        width: var(--circle-size);
+        box-sizing: border-box;
+      }
+      &-outer {
+        stroke: var(--cirkelouter);
+      }
+      &-inner {
+        margin-top: calc(-1 * var(--circle-size));
+        stroke: red;
+      }
+      &-variables {
+        margin-top: calc(
+          -1 * var(--circle-size) + var(--circle-value-size) * 1.5
+        );
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: var(--circle-value-size);
+        &__value {
+          font-size: var(--circle-value-size);
+        }
+        &__perc {
+          font-size: var(--circle-perc-size);
+          margin-top: calc(var(--circle-perc-size) / 2);
+          &--blue {
+            color: map-get($secondary-colors, bluetint);
+            filter: drop-shadow(0 0 0.2rem rgba(5, 114, 255, 0.149));
+          }
+          &--green {
+            color: map-get($secondary-colors, greentint);
+            filter: drop-shadow(0 0 0.2rem rgba(32, 217, 38, 0.15));
+          }
+          &--orange {
+            color: map-get($secondary-colors, orangetint);
+            filter: drop-shadow(0 0 0.2rem rgba(245, 172, 11, 0.15));
+          }
+          &--red {
+            color: map-get($secondary-colors, redtint);
+            filter: drop-shadow(0 0 0.2rem rgba(216, 53, 32, 0.15));
+          }
+        }
+      }
+      &-svg {
+        box-sizing: border-box;
+
+        // filter: drop-shadow(0 0 1rem rgba(0, 0, 0, 0.3));
+
+        stroke-linecap: round;
+        transition: stroke-dashoffset 0.35s;
+      }
+    }
+    &__title {
+      font-size: var(--circle-title-size);
+      text-transform: uppercase;
+      color: var(--light200);
+      letter-spacing: 1px;
+      align-self: flex-end;
+      grid-column: span 2;
+      padding: 0 0 0.5em 0;
+    }
+  }
+}
