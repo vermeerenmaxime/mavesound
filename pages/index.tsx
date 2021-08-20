@@ -171,47 +171,54 @@ const SideNavigation = ({ className }) => {
 export default function Home() {
   const scrollVariables = useRef<any>();
   const scrollThing = useRef<any>();
-  useEffect(() => {
-    scrollVariables.current.onscroll = () => {
-      let screenHeight = scrollVariables.current.clientHeight;
-      //   console.log(screenHeight);
-      //   let appHeight = scrollVariables.current.offsetHeight;
-      //   console.log(appHeight);
+  //   useEffect(() => {
+  //     scrollVariables.current.onscroll = () => {
+  //       let screenHeight = scrollVariables.current.clientHeight;
+  //       //   console.log(screenHeight);
+  //       //   let appHeight = scrollVariables.current.offsetHeight;
+  //       //   console.log(appHeight);
 
-      let trackScrollTop = scrollVariables.current.scrollTop;
+  //       let trackScrollTop = scrollVariables.current.scrollTop;
 
-      if (trackScrollTop < screenHeight) {
-        scrollThing.current.style.marginRight = "-50px";
-        scrollThing.current.style.height = "130px";
-        scrollThing.current.style.width = "65%";
-        scrollThing.current.style.transform = "skew(-25deg)";
-      }
-      if (trackScrollTop > screenHeight - 100) {
-        scrollThing.current.style.marginRight = "25%";
-        scrollThing.current.style.height = "40%";
-        scrollThing.current.style.width = "65%";
-        scrollThing.current.style.transform = "skew(25deg)";
-      }
-      if (trackScrollTop > screenHeight * 2 - 100) {
-        scrollThing.current.style.marginRight = "35%";
-        scrollThing.current.style.height = "28%";
-        scrollThing.current.style.width = "80%";
-        scrollThing.current.style.transform = "skew(25deg)";
-      }
-      if (trackScrollTop > screenHeight * 3 - 100) {
-        scrollThing.current.style.marginRight = "35%";
-        scrollThing.current.style.height = "70%";
-        scrollThing.current.style.width = "80%";
-        scrollThing.current.style.transform = "skew(25deg)";
-      }
-      if (trackScrollTop > screenHeight * 3 + 100) {
-        scrollThing.current.style.marginRight = "60%";
-        scrollThing.current.style.height = "100%";
-        scrollThing.current.style.width = "100%";
-        scrollThing.current.style.transform = "skew(-15deg)";
-      }
-    };
-  }, []);
+  //       if (trackScrollTop < screenHeight) {
+  //         scrollThing.current.style.marginRight = "-50px";
+  //         scrollThing.current.style.height = "130px";
+  //         scrollThing.current.style.width = "65%";
+  //         scrollThing.current.style.transform = "skew(-25deg)";
+  //       }
+  //       if (trackScrollTop > screenHeight - 100) {
+  //         scrollThing.current.style.marginRight = "25%";
+  //         scrollThing.current.style.height = "40%";
+  //         scrollThing.current.style.width = "80%";
+  //         scrollThing.current.style.transform = "skew(25deg)";
+  //       }
+  //       if (trackScrollTop > screenHeight * 2 - 100) {
+  //         scrollThing.current.style.marginRight = "35%";
+  //         scrollThing.current.style.height = "28%";
+  //         scrollThing.current.style.width = "80%";
+  //         scrollThing.current.style.transform = "skew(25deg)";
+  //       }
+  //       if (trackScrollTop > screenHeight * 3 - 100) {
+  //         scrollThing.current.style.marginRight = "35%";
+  //         scrollThing.current.style.height = "70%";
+  //         scrollThing.current.style.width = "80%";
+  //         scrollThing.current.style.transform = "skew(25deg)";
+  //       }
+  //       if (trackScrollTop > screenHeight * 3 + 100) {
+  //         scrollThing.current.style.marginRight = "60%";
+  //         scrollThing.current.style.height = "100%";
+  //         scrollThing.current.style.width = "100%";
+  //         scrollThing.current.style.transform = "skew(-15deg)";
+  //       }
+  //     };
+  //   }, []);
+
+  const artistImages = [
+    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdancefair.nl%2Fwp-content%2Fuploads%2F2017%2F02%2Fmesto-1.jpg&f=1&nofb=1",
+    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.dance-charts.de%2Fimages%2FJanuar_2019%2FMesto.jpg&f=1&nofb=1",
+    "https://partyflock.nl/ov/images/artist/83741_2971x2432_399015/Mesto.jpg",
+    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpartyflock.nl%2Fimages%2Fartist%2F83741_1169x1169_572283%2FMesto.jpg&f=1&nofb=1",
+  ];
 
   return (
     <div className="c-app" ref={scrollVariables}>
@@ -482,15 +489,71 @@ export default function Home() {
       <div className="c-about">
         <div className="c-about--overlay-purple flex flex-col-reverse sm:flex-row">
           <div className="w-full sm:w-1/2 grid p-8 sm:p-24 grid-rows-3 grid-cols-2 gap-4 flex-wrap">
-            <div className="bg-black rounded-md col-span-2 bg-opacity-70 "></div>
-            <div className="bg-black rounded-md row-span-2 bg-opacity-70 "></div>
-            <div className="bg-black rounded-md bg-opacity-70 "></div>
-            <div className="bg-black rounded-md bg-opacity-70 "></div>
+            <div
+              className="bg-black rounded-md col-span-2 bg-opacity-70 "
+              style={{
+                backgroundImage:`url(${artistImages[0]})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            ></div>
+            <div
+              className="bg-black rounded-md row-span-2 bg-opacity-70 "
+              style={{
+                backgroundImage:`url(${artistImages[0]})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            ></div>
+            <div
+              className="bg-black rounded-md bg-opacity-70 "
+              style={{
+                backgroundImage:`url(${artistImages[0]})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            ></div>
+            <div
+              className="bg-black rounded-md bg-opacity-70 "
+              style={{
+                backgroundImage:`url(${artistImages[0]})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            ></div>
             <div className="col-span-2  gap-4 grid-cols-4 hidden sm:grid">
-              <div className="bg-black rounded-md h-24 bg-opacity-70 "></div>
-              <div className="bg-black rounded-md h-24 bg-opacity-70 "></div>
-              <div className="bg-black rounded-md h-24 bg-opacity-70 "></div>
-              <div className="bg-black rounded-md h-24 bg-opacity-70 "></div>
+              <div
+                className="bg-black rounded-md h-24 bg-opacity-70 "
+                style={{
+                  backgroundImage:`url(${artistImages[0]})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              ></div>
+              <div
+                className="bg-black rounded-md h-24 bg-opacity-70 "
+                style={{
+                  backgroundImage:`url(${artistImages[0]})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              ></div>
+              <div
+                className="bg-black rounded-md h-24 bg-opacity-70 "
+                style={{
+                  backgroundImage:`url(${artistImages[0]})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              ></div>
+              <div
+                className="bg-black rounded-md h-24 bg-opacity-70 "
+                style={{
+                  backgroundImage:`url(${artistImages[0]})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }}
+              ></div>
             </div>
           </div>
           <div className="w-full sm:w-1/2 p-8 sm:p-24 sm:pl-0">
@@ -591,7 +654,10 @@ export default function Home() {
             </svg>{" "}
             <br />
             by{" "}
-            <a href="https://maveproductions.com" className="font-medium hover:underline">
+            <a
+              href="https://maveproductions.com"
+              className="font-medium hover:underline"
+            >
               MaveProductions
             </a>
           </div>
