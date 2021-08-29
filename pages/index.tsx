@@ -129,43 +129,47 @@ const SideNavigation = ({ isOpen, setToggleNav, className = "" }) => {
         isOpen ? "slideInLeft" : "slideOutLeft"
       }`}
     >
-      <div className="flex flex-col uppercase font-semibold gap-5 text-white text-sm">
-        {pages &&
-          pages.map((page, index) => {
-            return (
-              <a
-                key={index}
-                href={"/"}
-                // selected={
-                //   pageName === page
-                //     ? true
-                //     : index === 0 && pageName === ""
-                //     ? true
-                //     : false
-                // }
-              >
-                {page}
-              </a>
-            );
-          })}
-        <hr className="opacity-20"></hr>
-        <div
-          className="flex gap-2 text-white cursor-pointer c-nav__toggle"
-          onClick={() => setToggleNav(!isOpen)}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5 "
-            viewBox="0 0 20 20"
-            fill="currentColor"
+      <div className="flex flex-col uppercase font-semibold gap-5 text-white text-sm justify-between w-full">
+        <div className="flex flex-col gap-5">
+          {pages &&
+            pages.map((page, index) => {
+              return (
+                <a
+                  key={index}
+                  href={"/"}
+                  // selected={
+                  //   pageName === page
+                  //     ? true
+                  //     : index === 0 && pageName === ""
+                  //     ? true
+                  //     : false
+                  // }
+                >
+                  {page}
+                </a>
+              );
+            })}
+        </div>
+        <div>
+          <hr className="opacity-10 mb-4 w-full"></hr>
+          <div
+            className="flex gap-2 text-white cursor-pointer justify-end text-xs "
+            onClick={() => setToggleNav(!isOpen)}
           >
-            <path
-              fillRule="evenodd"
-              d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-              clipRule="evenodd"
-            />
-          </svg>
-          Close
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-4 w-4 "
+              viewBox="0 0 20 20"
+              fill="currentColor"
+            >
+              <path
+                fillRule="evenodd"
+                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+                clipRule="evenodd"
+              />
+            </svg>
+            Close
+          </div>
         </div>
       </div>
     </aside>
@@ -359,7 +363,7 @@ export default function Home() {
         </div>
       </main>
       <div className="c-music flex items-center justify-center flex-col py-12 sm:py-24 md:h-screen">
-        <h1 className="text-4xl flex font-bold -mt-4 items-center justify-between space-x-6">
+        <h1 className="text-3xl sm:text-4xl flex font-bold -mt-4 items-center justify-between space-x-6">
           <MusicNavigatorIcon direction="right" />
           <div>Music</div>
           <MusicNavigatorIcon enabled={true} direction="left" />
@@ -827,7 +831,7 @@ const MusicCover = ({
           </div>
 
           <SubLink size="xs" href={listenURL}>
-            Stream here
+            Stream <div className="hidden md:flex pl-1"> here</div>
           </SubLink>
         </div>
       </div>
