@@ -13,9 +13,32 @@ import {
   useRef,
   useState,
 } from "react";
+import { songType } from "../src/types/song";
 
 const pages = ["home", "music", "shows", "contact", "about"];
-const songs = ["Higher", "Who Are You"];
+const songs = [
+  {
+    trackName: "Higher",
+    artists: "Mave",
+    listenURL: "https://orcd.co/mave4",
+    backgroundImage:
+      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+  },
+  {
+    trackName: "Who Are You",
+    artists: "Mave & LauraBrown",
+    listenURL: "https://orcd.co/mave4",
+    backgroundImage:
+      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+  },
+  {
+    trackName: "Heart Broken",
+    artists: "Mave & LauraBrown",
+    listenURL: "https://orcd.co/mave4",
+    backgroundImage:
+      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+  },
+];
 
 const NavigationLink = ({ children, selected = false, href = "/" }) => {
   return (
@@ -369,21 +392,35 @@ export default function Home() {
           <MusicNavigatorIcon enabled={true} direction="left" />
         </h1>
         <div className="mt-4 grid items-center w-11/12  sm:w-10/12 md:w-9/12 max-w-5xl gap-4 grid-rows-3 sm:grid-rows-2 grid-cols-2 sm:grid-cols-3">
-          {/* {songs &&
-            songs.map((song, index) => {
-              return <>hi</>;
-            })} */}
-          <MusicCover>yas!</MusicCover>
+          {songs &&
+            songs.map((song: songType, index) => {
+              return (
+                <MusicCover
+                  key={index}
+                  backgroundImage={song.backgroundImage}
+                  trackName={song.trackName}
+                  artists={song.artists}
+                  listenURL={song.listenURL}
+                >
+                  hi
+                </MusicCover>
+              );
+            })}
+          {/* <MusicCover>yas!</MusicCover>
           <MusicCover></MusicCover>
           <MusicCover></MusicCover>
           <MusicCover></MusicCover>
           <MusicCover></MusicCover>
-          <MusicCover></MusicCover>
+          <MusicCover></MusicCover> */}
         </div>
         <div className="mt-8 flex space-x-2">
-          <MusicNavigatorDot enabled={true} />
+          {songs &&
+            songs.map((song, index) => {
+              if (index % 6 == 0) return <MusicNavigatorDot enabled={true} />;
+            })}
+          {/* <MusicNavigatorDot enabled={true} />
           <MusicNavigatorDot enabled={false} />
-          <MusicNavigatorDot enabled={false} />
+          <MusicNavigatorDot enabled={false} /> */}
         </div>
       </div>
       <div className="c-contact h-full md:h-screen flex p-12 sm:p-12 md:p-24 justify-center flex-col ">
