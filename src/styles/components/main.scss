@@ -84,14 +84,14 @@
 }
 .c-music {
     @include gradient(blue, darkblue, 30, 15, 50, 0%);
-    padding:20vh 0;
+    // padding:20vh 0;
     // height: 100vh;
     width: 100%;
 }
 .c-contact {
     @include gradient(darkblue, blue, -80, 50, 10, 0%);
 
-    height: 100vh;
+    // height: 100vh;
     width: 100%;
 }
 .c-about {

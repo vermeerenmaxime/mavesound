@@ -28,7 +28,7 @@
         transform: translateX(0);
     }
     100% {
-        transform: translateX(-10%);
+        transform: translateX(-100%);
     }
 }
 @keyframes slideDown {
@@ -57,7 +57,7 @@
 
 .slideOutLeft {
     transform: translateX(-100%);
-    animation: slideInLeft 0.2s ease-in-out;
+    animation: slideOutLeft 0.2s ease-in-out;
 }
 
 .slideDown {

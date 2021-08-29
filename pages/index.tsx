@@ -5,7 +5,14 @@ import Link from "next/link";
 // import InstagramIcon from "../src/svg/instagram-brands.svg";
 
 import { useRouter } from "next/router";
-import { useEffect, useRef, useState } from "react";
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useRef,
+  useState,
+} from "react";
 
 const pages = ["home", "music", "shows", "contact", "about"];
 const songs = ["Higher", "Who Are You"];
@@ -24,14 +31,13 @@ const NavigationLink = ({ children, selected = false, href = "/" }) => {
   );
 };
 
-const Navigation = () => {
+const Navigation = ({ isOpen, setToggleNav }) => {
   const router = useRouter();
   let pageName = router.pathname.substring(1, router.pathname.length);
-  const [toggle, setToggle] = useState(false);
 
   return (
     <>
-      <div className="c-main__navigation c-nav p-12 px-12 lg:px-24 text-sm flex space-x-12 justify-end items-center uppercase font-semibold ">
+      <div className="c-main__navigation c-nav p-12 py-8 lg:py-16 lg:px-24 text-sm flex space-x-12 justify-end items-center uppercase font-semibold ">
         <div className="space-x-12 hidden sm:block">
           {pages &&
             pages.map((page, index) => {
@@ -53,10 +59,9 @@ const Navigation = () => {
             })}
         </div>
         <div
-          className={`c-nav__toggle ${toggle && "c-nav__toggle--selected"}`}
-          onClick={() => {
-            setToggle(!toggle);
-          }}
+          className={`c-nav__toggle ${isOpen && "c-nav__toggle--selected"}`}
+          //   onClick={() => openNavDispatch(!openNavState.open)}
+          onClick={() => setToggleNav(!isOpen)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -74,7 +79,6 @@ const Navigation = () => {
           </svg>
         </div>
       </div>
-      {/* <SideNavigation className="slideInLeft"></SideNavigation> */}
     </>
   );
 };
@@ -115,14 +119,14 @@ const SocialLink = ({ link, media, extraClass = "" }) => {
   );
 };
 
-const SideNavigation = ({ className }) => {
+const SideNavigation = ({ isOpen, setToggleNav, className = "" }) => {
   const router = useRouter();
   let pageName = router.pathname.substring(1, router.pathname.length);
-  const [toggle, setToggle] = useState(false);
+
   return (
     <aside
       className={`c-navigation backdrop-filter backdrop-blur-xl p-12 flex flex-row gap-8 justify-between ${className} ${
-        toggle && "slideOutLeft"
+        isOpen ? "slideInLeft" : "slideOutLeft"
       }`}
     >
       <div className="flex flex-col uppercase font-semibold gap-5 text-white text-sm">
@@ -146,8 +150,8 @@ const SideNavigation = ({ className }) => {
           })}
         <hr className="opacity-20"></hr>
         <div
-          onClick={() => (setToggle(false), console.log("hiƒ", toggle))}
           className="flex gap-2 text-white cursor-pointer c-nav__toggle"
+          onClick={() => setToggleNav(!isOpen)}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -220,6 +224,8 @@ export default function Home() {
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpartyflock.nl%2Fimages%2Fartist%2F83741_1169x1169_572283%2FMesto.jpg&f=1&nofb=1",
   ];
 
+  const [toggleNav, setToggleNav] = useState(false);
+
   return (
     <div className="c-app" ref={scrollVariables}>
       <Head>
@@ -231,7 +237,10 @@ export default function Home() {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
-
+      <SideNavigation
+        isOpen={toggleNav}
+        setToggleNav={setToggleNav}
+      ></SideNavigation>
       <main className="c-main">
         <div className="c-main--overlay-green"></div>
         {/* <svg
@@ -268,13 +277,16 @@ export default function Home() {
           ref={scrollThing}
         ></div>
         <div className="c-main__content">
-          <Navigation></Navigation>
+          <Navigation
+            isOpen={toggleNav}
+            setToggleNav={setToggleNav}
+          ></Navigation>
 
           <div className="px-12 lg:px-24 h-full flex">
             <div className="grid w-full sm:w-11/12 lg:w-6/12 content-between h-full">
               <div className="-mb-8 py-12 -mt-12 sm:-mt-0">
                 <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold -ml-1">
-                  Mave
+                  Mave {toggleNav}
                 </div>
                 <div className="text-xs md:text-sm xl:text-sm mt-8 mb-3 opacity-80">
                   Maxime Vermeeren, better known by his stage name <b>Mave</b>{" "}
@@ -346,7 +358,7 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <div className="c-music flex items-center justify-center flex-col ">
+      <div className="c-music flex items-center justify-center flex-col py-12 sm:py-24 md:h-screen">
         <h1 className="text-4xl flex font-bold -mt-4 items-center justify-between space-x-6">
           <MusicNavigatorIcon direction="right" />
           <div>Music</div>
@@ -370,7 +382,7 @@ export default function Home() {
           <MusicNavigatorDot enabled={false} />
         </div>
       </div>
-      <div className="c-contact flex p-12 sm:p-12 md:p-24 justify-center flex-col ">
+      <div className="c-contact h-full md:h-screen flex p-12 sm:p-12 md:p-24 justify-center flex-col ">
         <h2 className="text-3xl font-bold">Contact Mave</h2>
         <div className="mt-8 flex flex-col w-full sm:w-5/12">
           <InputSelect></InputSelect>
@@ -488,27 +500,19 @@ export default function Home() {
       </div>
       <div className="c-about">
         <div className="c-about--overlay-purple flex flex-col-reverse sm:flex-row">
-          <div className="w-full sm:w-1/2 grid p-8 sm:p-24 grid-rows-3 grid-cols-2 gap-4 flex-wrap">
+          <div className="w-full sm:w-1/2 grid h-96 sm:h-screen px-4 sm:px-8 lg:p-24 py-4 sm:pt-24 grid-rows-2 sm:grid-rows-3 grid-cols-2 gap-4 flex-wrap">
             <div
-              className="bg-black rounded-md col-span-2 bg-opacity-70 "
+              className="bg-black rounded-md sm:col-span-2 bg-opacity-70 "
               style={{
-                backgroundImage:`url(${artistImages[0]})`,
+                backgroundImage: `url(${artistImages[0]})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
             ></div>
             <div
-              className="bg-black rounded-md row-span-2 bg-opacity-70 "
+              className="bg-black rounded-md sm:row-span-2 bg-opacity-30 "
               style={{
-                backgroundImage:`url(${artistImages[0]})`,
-                backgroundSize: "cover",
-                backgroundPosition: "center",
-              }}
-            ></div>
-            <div
-              className="bg-black rounded-md bg-opacity-70 "
-              style={{
-                backgroundImage:`url(${artistImages[0]})`,
+                backgroundImage: `url(${artistImages[0]})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -516,16 +520,24 @@ export default function Home() {
             <div
               className="bg-black rounded-md bg-opacity-70 "
               style={{
-                backgroundImage:`url(${artistImages[0]})`,
+                backgroundImage: `url(${artistImages[0]})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
             ></div>
-            <div className="col-span-2  gap-4 grid-cols-4 hidden sm:grid">
+            <div
+              className="bg-black rounded-md bg-opacity-70 "
+              style={{
+                backgroundImage: `url(${artistImages[0]})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }}
+            ></div>
+            <div className="col-span-2 gap-4 grid-cols-4 hidden sm:grid">
               <div
                 className="bg-black rounded-md h-24 bg-opacity-70 "
                 style={{
-                  backgroundImage:`url(${artistImages[0]})`,
+                  backgroundImage: `url(${artistImages[0]})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -533,7 +545,7 @@ export default function Home() {
               <div
                 className="bg-black rounded-md h-24 bg-opacity-70 "
                 style={{
-                  backgroundImage:`url(${artistImages[0]})`,
+                  backgroundImage: `url(${artistImages[0]})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -541,7 +553,7 @@ export default function Home() {
               <div
                 className="bg-black rounded-md h-24 bg-opacity-70 "
                 style={{
-                  backgroundImage:`url(${artistImages[0]})`,
+                  backgroundImage: `url(${artistImages[0]})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -549,7 +561,7 @@ export default function Home() {
               <div
                 className="bg-black rounded-md h-24 bg-opacity-70 "
                 style={{
-                  backgroundImage:`url(${artistImages[0]})`,
+                  backgroundImage: `url(${artistImages[0]})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
