@@ -83,7 +83,7 @@ const Navigation = ({ isOpen, setToggleNav }) => {
             })}
         </div>
         <div
-          className={`c-nav__toggle ${isOpen && "c-nav__toggle--selected"}`}
+          className={`c-nav__toggle ${isOpen ? "c-nav__toggle--selected":""} flex sm:hidden`}
           //   onClick={() => openNavDispatch(!openNavState.open)}
           onClick={() => setToggleNav(!isOpen)}
         >
@@ -365,7 +365,7 @@ export default function Home() {
               <img className="c-main__image"></img>
             </div>
           </div>
-          <div className="grid sm:justify-start px-12 lg:px-24 text-3xl sm:text-2xl md:text-3xl lg:text-4xl gap-4 grid-flow-col items-center justify-items-center -mt-4 sm:-mt-4">
+          <div className="grid sm:justify-start px-12 lg:px-24 text-3xl sm:text-2xl md:text-3xl gap-4 grid-flow-col items-center justify-items-center -mt-4 sm:-mt-4">
             <SocialLink
               link="https://www.instagram.com/mavesound/"
               media="instagram"
