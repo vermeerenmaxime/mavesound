@@ -86,7 +86,6 @@ const Navigation = ({ isOpen, setToggleNav }) => {
           className={`c-nav__toggle ${
             isOpen ? "c-nav__toggle--selected" : ""
           } flex sm:hidden`}
-          //   onClick={() => openNavDispatch(!openNavState.open)}
           onClick={() => setToggleNav(!isOpen)}
         >
           <svg
@@ -139,7 +138,7 @@ const SocialLink = ({ link, media, extraClass = "" }) => {
   return (
     <a target="_blank" href={link} rel="noreferrer">
       <i
-        className={`fab fa-${media} c-socials__icon transform ${extraClass} `}
+        className={`fa fab fa-${media} c-socials__icon transform ${extraClass} `}
       ></i>
     </a>
   );
@@ -419,7 +418,7 @@ export default function Home() {
         <div className="mt-8 flex space-x-2">
           {songs &&
             songs.map((song, index) => {
-              if (index % 6 == 0) return <MusicNavigatorDot enabled={true} />;
+              if (index % 6 == 0) return <MusicNavigatorDot key={index} enabled={true} />;
             })}
           {/* <MusicNavigatorDot enabled={true} />
           <MusicNavigatorDot enabled={false} />
