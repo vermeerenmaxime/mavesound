@@ -19,21 +19,63 @@ import Contact from "./contact";
 const pages = ["home", "music", "shows", "contact", "about"];
 const songs = [
   {
-    trackName: "Higher",
+    trackName: "Higher 1",
     artists: "Mave",
     listenURL: "https://orcd.co/mave4",
     backgroundImage:
       "https://loudmemory.com/music/files/card_image_icon-141.jpg",
   },
   {
-    trackName: "Who Are You",
+    trackName: "Who Are You 2",
     artists: "Mave & LauraBrown",
     listenURL: "https://orcd.co/mave4",
     backgroundImage:
       "https://loudmemory.com/music/files/card_image_icon-141.jpg",
   },
   {
-    trackName: "Heart Broken",
+    trackName: "Heart Broken 3",
+    artists: "Mave & LauraBrown",
+    listenURL: "https://orcd.co/mave4",
+    backgroundImage:
+      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+  },
+  {
+    trackName: "Higher 4",
+    artists: "Mave",
+    listenURL: "https://orcd.co/mave4",
+    backgroundImage:
+      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+  },
+  {
+    trackName: "Who Are You 5",
+    artists: "Mave & LauraBrown",
+    listenURL: "https://orcd.co/mave4",
+    backgroundImage:
+      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+  },
+  {
+    trackName: "Heart Broken 6",
+    artists: "Mave & LauraBrown",
+    listenURL: "https://orcd.co/mave4",
+    backgroundImage:
+      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+  },
+  {
+    trackName: "Higher 7",
+    artists: "Mave",
+    listenURL: "https://orcd.co/mave4",
+    backgroundImage:
+      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+  },
+  {
+    trackName: "Who Are You 8",
+    artists: "Mave & LauraBrown",
+    listenURL: "https://orcd.co/mave4",
+    backgroundImage:
+      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+  },
+  {
+    trackName: "Heart Broken 9",
     artists: "Mave & LauraBrown",
     listenURL: "https://orcd.co/mave4",
     backgroundImage:
@@ -41,17 +83,24 @@ const songs = [
   },
 ];
 
-const NavigationLink = ({ children, selected = false, href = "/" }) => {
+const NavigationLink = ({
+  children,
+  selected = false,
+  href = "/",
+  onClick = () => console.log("Clicked menu"),
+}) => {
   return (
-    <Link href={`${href}`} passHref>
-      <a
-        className={`cursor-pointer c-nav__link ${
-          selected ? "c-nav__link--selected" : ""
-        }`}
-      >
-        {children}
-      </a>
-    </Link>
+    // <Link href={`${href}`} passHref>
+    <a
+      href={`${href}`}
+      className={`cursor-pointer c-nav__link ${
+        selected ? "c-nav__link--selected" : ""
+      }`}
+      onClick={onClick}
+    >
+      {children}
+    </a>
+    // </Link>
   );
 };
 
@@ -68,7 +117,7 @@ const Navigation = ({ isOpen, setToggleNav }) => {
               return (
                 <NavigationLink
                   key={index}
-                  href={"/"}
+                  href={`#${page}`}
                   selected={
                     pageName === page
                       ? true
@@ -85,23 +134,40 @@ const Navigation = ({ isOpen, setToggleNav }) => {
         <div
           className={`c-nav__toggle ${
             isOpen ? "c-nav__toggle--selected" : ""
-          } flex sm:hidden`}
+          } flex sm:hidden top-8 z-50`}
           onClick={() => setToggleNav(!isOpen)}
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-6 w-6"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth={2}
-              d="M4 6h16M4 12h16M4 18h16"
-            />
-          </svg>
+          {!isOpen ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M4 6h16M4 12h16M4 18h16"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          )}
         </div>
       </div>
     </>
@@ -156,28 +222,49 @@ const SideNavigation = ({ isOpen, setToggleNav, className = "" }) => {
         }`}
       >
         <div className="grid flex-col uppercase font-semibold gap-5 text-white text-sm justify-between w-full">
-          <div className="flex flex-col gap-5">
+          <div className="grid items-center justify-items-start">
             {pages &&
               pages.map((page, index) => {
                 return (
-                  <a
+                  //   <a
+                  //     key={index}
+                  //     className=""
+                  //     href={"/"}
+                  //     // selected={
+                  //     //   pageName === page
+                  //     //     ? true
+                  //     //     : index === 0 && pageName === ""
+                  //     //     ? true
+                  //     //     : false
+                  //     // }
+                  //   >
+                  //     {page}
+                  //   </a>
+                  <NavigationLink
                     key={index}
-                    href={"/"}
-                    // selected={
-                    //   pageName === page
-                    //     ? true
-                    //     : index === 0 && pageName === ""
-                    //     ? true
-                    //     : false
-                    // }
+                    href={`#${page}`}
+                    selected={
+                      pageName === page
+                        ? true
+                        : index === 0 && pageName === ""
+                        ? true
+                        : false
+                    }
+                    onClick={() => setToggleNav(!isOpen)}
                   >
                     {page}
-                  </a>
+                  </NavigationLink>
                 );
               })}
+            <div
+              className="cursor-pointer"
+              onClick={() => setToggleNav(!isOpen)}
+            >
+              Close
+            </div>
           </div>
-          <div>{/* <hr className="opacity-10 mb-4 w-full"></hr> */}</div>
-          <div
+          <hr className="opacity-10 mb-4 w-full"></hr>
+          {/* <div
             className="flex w-12 h-12 backdrop-blur-xl justify-center items-center bg-white bg-opacity-5  rounded-full text-white cursor-pointer"
             onClick={() => setToggleNav(!isOpen)}
           >
@@ -195,7 +282,7 @@ const SideNavigation = ({ isOpen, setToggleNav, className = "" }) => {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-          </div>
+          </div> */}
         </div>
       </aside>
     </>
@@ -271,7 +358,7 @@ export default function Home() {
         isOpen={toggleNav}
         setToggleNav={setToggleNav}
       ></SideNavigation>
-      <main className="c-main">
+      <main className="c-main" id="home">
         <div className="c-main--overlay-green"></div>
         {/* <svg
           className="c-main--overlay-arrow md:scale-50"
@@ -387,15 +474,20 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <div className="c-music flex items-center justify-center flex-col py-12 sm:py-24 md:h-screen">
+      <div
+        className="c-music flex items-center justify-center flex-col h-full p-6 py-12 sm:p-12 md:p-24 md:h-screen " 
+        id="music"
+      >
         <h1 className="text-3xl sm:text-4xl flex font-bold -mt-4 items-center justify-between space-x-6">
           <MusicNavigatorIcon direction="right" />
           <div>Music</div>
           <MusicNavigatorIcon enabled={true} direction="left" />
         </h1>
-        <div className="mt-4 grid items-center w-11/12  sm:w-10/12 md:w-9/12 max-w-5xl gap-4 grid-rows-3 sm:grid-rows-2 grid-cols-2 sm:grid-cols-3">
-          {songs &&
-            songs.map((song: songType, index) => {
+        <div className="mt-4 w-full ">
+          {/* <div className="mt-4 grid items-center w-11/12  sm:w-10/12 md:w-9/12 max-w-5xl gap-4 grid-rows-3 sm:grid-rows-2 grid-cols-2 sm:grid-cols-3"> */}
+          {/* {songs.slice(0,6)} */}
+          {/* {songs &&
+            songs.slice(0,6).map((song: songType, index) => {
               return (
                 <MusicCover
                   key={index}
@@ -407,7 +499,55 @@ export default function Home() {
                   hi
                 </MusicCover>
               );
+            })} */}
+          {songs &&
+            songs.map((song: songType, index) => {
+              if (index % 6 == 0) {
+                return (
+                  <div
+                    key={index}
+                    className={`grid c-music__caroussel gap-4 
+                    grid-rows-3 md:grid-rows-2 grid-cols-2 md:grid-cols-3 
+                    
+                    ${
+                      index != 0 ? "slideInRight" : "hidden"
+                    }`}
+                  >
+                    {songs
+                      .slice(index, index + 6)
+                      .map((song: songType, index) => {
+                        return (
+                          <MusicCover
+                            key={index}
+                            backgroundImage={song.backgroundImage}
+                            trackName={song.trackName}
+                            artists={song.artists}
+                            listenURL={song.listenURL}
+                          >
+                            hi
+                          </MusicCover>
+                        );
+                      })}
+                  </div>
+                );
+                // songs.slice(0, 6).map((songg: songType, indexx) => {
+                //   console.log("songg");
+                //   return (
+
+                //     // <MusicCover
+                //     //   key={indexx}
+                //     //   backgroundImage={songg.backgroundImage}
+                //     //   trackName={songg.trackName}
+                //     //   artists={songg.artists}
+                //     //   listenURL={songg.listenURL}
+                //     // >
+                //     //   hi
+                //     // </MusicCover>
+                //   );
+                // });
+              }
             })}
+
           {/* <MusicCover>yas!</MusicCover>
           <MusicCover></MusicCover>
           <MusicCover></MusicCover>
@@ -418,14 +558,18 @@ export default function Home() {
         <div className="mt-8 flex space-x-2">
           {songs &&
             songs.map((song, index) => {
-              if (index % 6 == 0) return <MusicNavigatorDot key={index} enabled={true} />;
+              if (index % 6 == 0)
+                return <MusicNavigatorDot key={index} enabled={false} />;
             })}
           {/* <MusicNavigatorDot enabled={true} />
           <MusicNavigatorDot enabled={false} />
           <MusicNavigatorDot enabled={false} /> */}
         </div>
       </div>
-      <div className="c-contact h-full md:h-screen flex p-12 sm:p-12 md:p-24 justify-center flex-col ">
+      <div
+        className="c-contact h-full md:h-screen flex p-12 sm:p-12 md:p-24 justify-center flex-col "
+        id="contact"
+      >
         <h2 className="text-3xl font-bold">Contact Mave</h2>
         <Contact></Contact>
 
@@ -529,7 +673,7 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="c-about">
+      <div className="c-about" id="about">
         <div className="c-about--overlay-purple flex flex-col-reverse sm:flex-row">
           <div className="w-full sm:w-1/2 grid h-96 sm:h-screen px-4 sm:px-8 lg:p-24 py-4 sm:pt-24 grid-rows-2 sm:grid-rows-3 grid-cols-2 gap-4 flex-wrap">
             <div

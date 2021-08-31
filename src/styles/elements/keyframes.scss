@@ -23,6 +23,15 @@
         transform: translateX(0);
     }
 }
+
+@keyframes slideInRight {
+    0% {
+        transform: translateX(100%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
 @keyframes slideOutLeft {
     0% {
         transform: translateX(0);
@@ -58,6 +67,11 @@
 .slideOutLeft {
     transform: translateX(-100%);
     animation: slideOutLeft 0.2s ease-in-out;
+}
+
+.slideInRight {
+    transform: translateX(0);
+    animation: slideInRight 0.2s ease-in-out;
 }
 
 .slideDown {

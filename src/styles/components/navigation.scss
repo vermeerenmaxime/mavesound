@@ -28,13 +28,13 @@
             width: 100%;
             background: color(light, 75);
         }
-        &:hover{
-            color:color(light,75);
+        &:hover {
+            color: color(light, 75);
             // mix-blend-mode: overlay;
         }
     }
     &__toggle {
-        position: relative;
+        position: fixed;
         // display: flex;
         align-items: center;
         justify-content: center;
@@ -43,13 +43,13 @@
         &:after {
             position: absolute;
             content: "";
-            height: 4em;
             border-radius: 50px;
             // left: 0;
             // right: 0;
             // top:1px;
             margin-top: 1px;
-            width: 4em;
+            height: 3.5em;
+            width: 3.5em;
             background: color(light, 15);
             will-change: background, transform;
             mix-blend-mode: overlay;
@@ -59,15 +59,15 @@
             align-items: center;
             justify-content: center;
             transform: scale(0);
-            
         }
         // &:hover:after,
         &--selected:after {
             background: color(light, 35);
             transform: scale(1);
         }
-        &:hover,&--selected{
-            color:color(light,75);
+        &:hover,
+        &--selected {
+            color: color(light, 75);
             // mix-blend-mode: overlay;
         }
     }

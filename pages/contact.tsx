@@ -22,9 +22,7 @@ const InputSelect = ({ title, options = ["Option"] }) => {
           setToggleSelected(false);
         }}
       >
-        <div>
-          {inputSelected.length <= 0 ? title : inputSelected}
-        </div>
+        <div>{inputSelected.length <= 0 ? title : inputSelected}</div>
         <div>
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -67,24 +65,24 @@ const InputSelect = ({ title, options = ["Option"] }) => {
 };
 
 export default function Contact() {
-  function sendEmail(e) {
+  function sendEmail(e: any) {
     e.preventDefault();
-
-    emailjs
-      .sendForm(
-        "default_service",
-        "template_prtm46a",
-        e.target,
-        "user_PnHqCfBQyUJosloO8PoZN"
-      )
-      .then(
-        (result) => {
-          console.log(result.text);
-        },
-        (error) => {
-          console.log(error.text);
-        }
-      );
+    console.log(e);
+    // emailjs
+    //   .sendForm(
+    //     "default_service",
+    //     "template_prtm46a",
+    //     e.target,
+    //     "user_PnHqCfBQyUJosloO8PoZN"
+    //   )
+    //   .then(
+    //     (result) => {
+    //       console.log(result.text);
+    //     },
+    //     (error) => {
+    //       console.log(error.text);
+    //     }
+    //   );
   }
 
   return (
@@ -103,11 +101,13 @@ export default function Contact() {
         className="mt-8 flex flex-col w-full sm:w-5/12"
         onSubmit={sendEmail}
       >
+        <input type="hidden" name="contact_number" />
         <InputSelect
           title="Select subject"
           options={["Promo", "Management", "Demo", "Other"]}
         ></InputSelect>
         <textarea
+          name="message"
           className="c-input mt-4"
           placeholder="Write something.."
           rows={4}
