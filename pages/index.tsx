@@ -5,7 +5,7 @@ import Link from "next/link";
 // import InstagramIcon from "../src/svg/instagram-brands.svg";
 
 import { useRouter } from "next/router";
-import {
+import React, {
   createContext,
   useContext,
   useEffect,
@@ -14,6 +14,7 @@ import {
   useState,
 } from "react";
 import { songType } from "../src/types/song";
+import Contact from "./contact";
 
 const pages = ["home", "music", "shows", "contact", "about"];
 const songs = [
@@ -147,55 +148,69 @@ const SideNavigation = ({ isOpen, setToggleNav, className = "" }) => {
   let pageName = router.pathname.substring(1, router.pathname.length);
 
   return (
-    <aside
-      className={`c-navigation backdrop-filter backdrop-blur-xl p-12 flex flex-row gap-8 justify-between ${className} ${
-        isOpen ? "slideInLeft" : "slideOutLeft"
-      }`}
-    >
-      <div className="flex flex-col uppercase font-semibold gap-5 text-white text-sm justify-between w-full">
-        <div className="flex flex-col gap-5">
-          {pages &&
-            pages.map((page, index) => {
-              return (
-                <a
-                  key={index}
-                  href={"/"}
-                  // selected={
-                  //   pageName === page
-                  //     ? true
-                  //     : index === 0 && pageName === ""
-                  //     ? true
-                  //     : false
-                  // }
-                >
-                  {page}
-                </a>
-              );
-            })}
-        </div>
-        <div>
-          <hr className="opacity-10 mb-4 w-full"></hr>
+    <>
+      <aside
+        className={`c-navigation backdrop-filter backdrop-blur-2xl p-12 flex flex-row gap-8 justify-between ${className} ${
+          isOpen ? "slideInLeft" : "slideOutLeft"
+        }`}
+      >
+        <div className="grid flex-col uppercase font-semibold gap-5 text-white text-sm justify-between w-full">
+          <div className="flex flex-col gap-5">
+            {pages &&
+              pages.map((page, index) => {
+                return (
+                  <a
+                    key={index}
+                    href={"/"}
+                    // selected={
+                    //   pageName === page
+                    //     ? true
+                    //     : index === 0 && pageName === ""
+                    //     ? true
+                    //     : false
+                    // }
+                  >
+                    {page}
+                  </a>
+                );
+              })}
+          </div>
+          <div>{/* <hr className="opacity-10 mb-4 w-full"></hr> */}</div>
           <div
-            className="flex gap-2 text-white cursor-pointer justify-end text-xs "
+            className="flex w-12 h-12 backdrop-blur-xl justify-center items-center bg-white bg-opacity-5  rounded-full text-white cursor-pointer"
             onClick={() => setToggleNav(!isOpen)}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-4 w-4 "
-              viewBox="0 0 20 20"
-              fill="currentColor"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
             >
               <path
-                fillRule="evenodd"
-                d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                clipRule="evenodd"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-            Close
+            {/* <svg
+          xmlns="http://www.w3.org/2000/svg"
+          className="h-4 w-4 "
+          viewBox="0 0 20 20"
+          fill="currentColor"
+        >
+          <path
+            fillRule="evenodd"
+            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
+            clipRule="evenodd"
+          />
+        </svg>
+        Close */}
           </div>
         </div>
-      </div>
-    </aside>
+      </aside>
+    </>
   );
 };
 
@@ -245,8 +260,8 @@ export default function Home() {
   //   }, []);
 
   const artistImages = [
-    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fdancefair.nl%2Fwp-content%2Fuploads%2F2017%2F02%2Fmesto-1.jpg&f=1&nofb=1",
-    "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fwww.dance-charts.de%2Fimages%2FJanuar_2019%2FMesto.jpg&f=1&nofb=1",
+    "https://instagram.fbru2-1.fna.fbcdn.net/v/t51.2885-15/e35/s1080x1080/233792805_280887997173551_1765922229156711915_n.jpg?_nc_ht=instagram.fbru2-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=9CkObFkaINEAX9hDZLf&edm=AP_V10EBAAAA&ccb=7-4&oh=cd70996ab9bfc1a03deef34024c42fa6&oe=613291D9&_nc_sid=4f375e",
+    "https://i.imgur.com/ucL13H4.jpg",
     "https://partyflock.nl/ov/images/artist/83741_2971x2432_399015/Mesto.jpg",
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpartyflock.nl%2Fimages%2Fartist%2F83741_1169x1169_572283%2FMesto.jpg&f=1&nofb=1",
   ];
@@ -309,11 +324,11 @@ export default function Home() {
             setToggleNav={setToggleNav}
           ></Navigation>
 
-          <div className="px-12 lg:px-24 h-full flex">
+          <div className="px-12 lg:px-24  flex">
             <div className="grid w-full sm:w-11/12 lg:w-6/12 content-between h-full">
-              <div className="-mb-8 py-12 -mt-12 sm:-mt-0">
+              <div className="-mb-8 py-12 -mt-12 sm:-mt-8">
                 <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold -ml-1">
-                  Mave {toggleNav}
+                  Mave 
                 </div>
                 <div className="text-xs md:text-sm xl:text-sm mt-8 mb-3 opacity-80">
                   Maxime Vermeeren, better known by his stage name <b>Mave</b>{" "}
@@ -350,37 +365,36 @@ export default function Home() {
               <img className="c-main__image"></img>
             </div>
           </div>
-          <div className="flex items-center justify-end sm:justify-start gap-20 ">
-            <div className="px-12 lg:px-24 mb-0 sm:mb-4 text-2xl lg:text-3xl py-24 c-socials space-x-5 float-right sm:float-left">
-              <SocialLink
-                link="https://www.instagram.com/mavesound/"
-                media="instagram"
-              />
-              <SocialLink
-                link="https://www.facebook.com/mavesounds/"
-                media="facebook"
-                extraClass="scale-90"
-              />
-              <SocialLink
-                link="https://www.soundcloud.com/mavesound/"
-                media="soundcloud"
-              />
-              <SocialLink
-                link="https://www.twitter.com/mavesound/"
-                media="twitter"
-                extraClass="scale-75"
-              />
-              <SocialLink
-                link="https://www.tiktok.com/@mavesound/"
-                media="tiktok"
-                extraClass="scale-75"
-              />
-              <SocialLink
-                link="https://open.spotify.com/artist/4k3qibqlspQSwEDhmA5NL7"
-                media="spotify"
-                extraClass="scale-90"
-              />
-            </div>
+          <div className="grid sm:justify-start px-12 lg:px-24 text-3xl sm:text-2xl md:text-3xl lg:text-4xl gap-4 grid-flow-col items-center justify-items-center -mt-4 sm:-mt-4">
+            <SocialLink
+              link="https://www.instagram.com/mavesound/"
+              media="instagram"
+            />
+            <SocialLink
+              link="https://www.facebook.com/mavesounds/"
+              media="facebook"
+              extraClass="scale-90"
+            />
+            <SocialLink
+              link="https://www.soundcloud.com/mavesound/"
+              media="soundcloud"
+            />
+            <SocialLink
+              link="https://www.twitter.com/mavesound/"
+              media="twitter"
+              extraClass="scale-75"
+            />
+            <SocialLink
+              link="https://www.tiktok.com/@mavesound/"
+              media="tiktok"
+              extraClass="scale-75"
+            />
+            <SocialLink
+              link="https://open.spotify.com/artist/4k3qibqlspQSwEDhmA5NL7"
+              media="spotify"
+              extraClass="scale-90"
+            />
+
             {/* <div className="c-main--parralello2 -ml-16  lg:ml-4 xl:ml-24"></div> */}
           </div>
         </div>
@@ -425,20 +439,8 @@ export default function Home() {
       </div>
       <div className="c-contact h-full md:h-screen flex p-12 sm:p-12 md:p-24 justify-center flex-col ">
         <h2 className="text-3xl font-bold">Contact Mave</h2>
-        <div className="mt-8 flex flex-col w-full sm:w-5/12">
-          <InputSelect></InputSelect>
-          <textarea
-            className="c-input mt-4"
-            placeholder="Write something.."
-            rows={4}
-          ></textarea>
-          <input
-            type="email"
-            className="c-input mt-4"
-            placeholder="Email address.."
-          ></input>
-          <button className="c-button mt-8">Send</button>
-        </div>
+        <Contact></Contact>
+
         <div className="mt-8 sm:mt-24">
           <div className="items-center font-medium gap-3 text-white text-opacity-80 hidden sm:flex">
             <svg
@@ -553,7 +555,7 @@ export default function Home() {
             <div
               className="bg-black rounded-md sm:row-span-2 bg-opacity-30 "
               style={{
-                backgroundImage: `url(${artistImages[0]})`,
+                backgroundImage: `url(${artistImages[1]})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -561,7 +563,7 @@ export default function Home() {
             <div
               className="bg-black rounded-md bg-opacity-70 "
               style={{
-                backgroundImage: `url(${artistImages[0]})`,
+                backgroundImage: `url(${artistImages[2]})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -569,7 +571,7 @@ export default function Home() {
             <div
               className="bg-black rounded-md bg-opacity-70 "
               style={{
-                backgroundImage: `url(${artistImages[0]})`,
+                backgroundImage: `url(${artistImages[3]})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }}
@@ -578,7 +580,7 @@ export default function Home() {
               <div
                 className="bg-black rounded-md h-24 bg-opacity-70 "
                 style={{
-                  backgroundImage: `url(${artistImages[0]})`,
+                  backgroundImage: `url(${artistImages[4]})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -586,7 +588,7 @@ export default function Home() {
               <div
                 className="bg-black rounded-md h-24 bg-opacity-70 "
                 style={{
-                  backgroundImage: `url(${artistImages[0]})`,
+                  backgroundImage: `url(${artistImages[5]})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -594,7 +596,7 @@ export default function Home() {
               <div
                 className="bg-black rounded-md h-24 bg-opacity-70 "
                 style={{
-                  backgroundImage: `url(${artistImages[0]})`,
+                  backgroundImage: `url(${artistImages[6]})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -602,7 +604,7 @@ export default function Home() {
               <div
                 className="bg-black rounded-md h-24 bg-opacity-70 "
                 style={{
-                  backgroundImage: `url(${artistImages[0]})`,
+                  backgroundImage: `url(${artistImages[7]})`,
                   backgroundSize: "cover",
                   backgroundPosition: "center",
                 }}
@@ -667,7 +669,7 @@ export default function Home() {
       </div>
       <footer className="c-footer px-12 sm:px-24 py-16 ">
         <div className="flex justify-between w-full">
-          <div className="flex flex-col gap-2">
+          <div className="grid gap-2">
             <div className="font-bold uppercase gap-2 flex items-center -ml-6">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -715,7 +717,7 @@ export default function Home() {
             </a>
           </div>
         </div>
-        <div className="mt-8 text-opacity-50 text-white text-sm flex gap-4">
+        <div className="mt-8 text-opacity-50 text-white text-sm grid grid-flow-col justify-start gap-4">
           <div>Terms & Conditions</div>
           <div>Privacy Policy </div>
           <div>Cookies Policy</div>
@@ -724,67 +726,6 @@ export default function Home() {
     </div>
   );
 }
-
-const InputSelect = () => {
-  const [toggleSelected, setToggleSelected] = useState(false);
-  const [inputSelected, setInputSelected] = useState("");
-
-  const options = ["Promo", "Management", "Demo", "Other"];
-  return (
-    <>
-      <div
-        className="c-input c-input--option flex justify-between"
-        onClick={() => {
-          setToggleSelected(!toggleSelected);
-        }}
-        onMouseEnter={() => {
-          setToggleSelected(true);
-        }}
-        onMouseLeave={() => {
-          setToggleSelected(false);
-        }}
-      >
-        <div>{inputSelected.length <= 0 ? "Select option" : inputSelected}</div>
-        <div>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            className="h-5 w-5"
-            viewBox="0 0 20 20"
-            fill="currentColor"
-          >
-            <path
-              fillRule="evenodd"
-              d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
-              clipRule="evenodd"
-            />
-          </svg>
-        </div>
-        <div
-          className={`c-option ${
-            toggleSelected
-              ? "c-option--selected slideFadeDown"
-              : "c-option--unselected"
-          }`}
-        >
-          {options &&
-            options.map((option, index) => {
-              return (
-                <div
-                  key={index}
-                  className="c-option__select"
-                  onClick={() => {
-                    setInputSelected(option);
-                  }}
-                >
-                  {option}
-                </div>
-              );
-            })}
-        </div>
-      </div>
-    </>
-  );
-};
 
 const MusicNavigatorDot = ({ enabled = false }) => {
   return (
