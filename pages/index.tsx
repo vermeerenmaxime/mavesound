@@ -83,7 +83,9 @@ const Navigation = ({ isOpen, setToggleNav }) => {
             })}
         </div>
         <div
-          className={`c-nav__toggle ${isOpen ? "c-nav__toggle--selected":""} flex sm:hidden`}
+          className={`c-nav__toggle ${
+            isOpen ? "c-nav__toggle--selected" : ""
+          } flex sm:hidden`}
           //   onClick={() => openNavDispatch(!openNavState.open)}
           onClick={() => setToggleNav(!isOpen)}
         >
@@ -194,19 +196,6 @@ const SideNavigation = ({ isOpen, setToggleNav, className = "" }) => {
                 d="M6 18L18 6M6 6l12 12"
               />
             </svg>
-            {/* <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-4 w-4 "
-          viewBox="0 0 20 20"
-          fill="currentColor"
-        >
-          <path
-            fillRule="evenodd"
-            d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-            clipRule="evenodd"
-          />
-        </svg>
-        Close */}
           </div>
         </div>
       </aside>
@@ -328,7 +317,7 @@ export default function Home() {
             <div className="grid w-full sm:w-11/12 lg:w-6/12 content-between h-full">
               <div className="-mb-8 py-12 -mt-12 sm:-mt-8">
                 <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold -ml-1">
-                  Mave 
+                  Mave
                 </div>
                 <div className="text-xs md:text-sm xl:text-sm mt-8 mb-3 opacity-80">
                   Maxime Vermeeren, better known by his stage name <b>Mave</b>{" "}
