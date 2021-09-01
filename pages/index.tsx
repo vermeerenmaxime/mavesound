@@ -307,6 +307,9 @@ export default function Home() {
   const scrollThing = useRef<any>();
 
   const [navActive, setNavActive] = useState(false);
+  const [scrolling, setScrolling] = useState(false);
+
+  let screenHeight = scrollVariables.current.clientHeight;
 
   useEffect(() => {
     scrollVariables.current.onscroll = () => {
@@ -316,6 +319,11 @@ export default function Home() {
         setNavActive(true);
       } else {
         setNavActive(false);
+      }
+      if (trackScrollTop > 1) {
+        setScrolling(true);
+      } else {
+        setScrolling(false);
       }
     };
   }, []);
@@ -381,6 +389,33 @@ export default function Home() {
 
         <link rel="icon" href="/favicon.ico" />
       </Head>
+      <div
+        className={`fixed bottom-0 w-36 -ml-8 inset-x-2/4 text-sm hidden md:flex ${
+          scrolling ? "slideFadeOutDown" : "slideFadeDown"
+        }`}
+      >
+        <div
+          className="flex items-center flex-col justify-center h-36 gap-1 text-white text-opacity-60 hover:text-opactiy-100 cursor-pointer"
+          onClick={() => (scrollVariables.current.scrollTop = screenHeight)}
+          onScroll={() => (scrollVariables.current.scrollTop = 250)}
+        >
+          <div>Scroll down</div>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            className="h-4 w-4"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={2}
+              d="M19 13l-7 7-7-7m14-8l-7 7-7-7"
+            />
+          </svg>
+        </div>
+      </div>
       <SideNavigation
         isOpen={toggleNav}
         setToggleNav={setToggleNav}
@@ -663,7 +698,7 @@ export default function Home() {
               ></div>
             </div>
           </div>
-          <div className="w-full sm:w-1/2 p-8 sm:p-24 sm:pl-0">
+          <div className="w-full sm:w-1/2 p-8 sm:p-24 sm:pl-0 ">
             <h3 className="font-bold text-3xl">Who&apos;s Mave?</h3>
             <div className="mt-6 text-white text-opacity-90">
               Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
