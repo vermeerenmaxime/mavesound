@@ -816,8 +816,8 @@ export default function Home() {
             </svg>
             or just write an old fashioned email..
           </div>
-          <div className="mt-4 grid grid-flow-col justify-start items-center justify-items-center gap-2 sm:gap-6 text-sm font-semibold mix-blend-overlay flex-col sm:flex-row">
-            <div className="grid grid-flow-col items-center gap-2">
+          <div className="mt-4 grid sm:grid-flow-col justify-start items-center gap-2 sm:gap-6 text-sm font-semibold mix-blend-overlay flex-col sm:flex-row">
+            <div className="grid grid-flow-col justify-start items-center gap-2">
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -835,7 +835,7 @@ export default function Home() {
               </svg>
               management@mavesound.com
             </div>
-            <div className="grid grid-flow-col items-center gap-2">
+            <div className="grid grid-flow-col justify-start items-center gap-2">
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -853,7 +853,7 @@ export default function Home() {
               </svg>
               promo@mavesound.com
             </div>
-            <div className="grid grid-flow-col items-center gap-2">
+            <div className="grid grid-flow-col justify-start items-center gap-2">
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
