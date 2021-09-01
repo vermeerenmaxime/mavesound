@@ -16,7 +16,7 @@ import React, {
 import { songType } from "../src/types/song";
 import Contact from "./contact";
 
-const pages = ["home", "music", "shows", "contact", "about"];
+const pages = ["home", "music", "shows", "about", "contact"];
 const songs = [
   {
     trackName: "Higher 1",
@@ -104,13 +104,24 @@ const NavigationLink = ({
   );
 };
 
-const Navigation = ({ isOpen, setToggleNav }) => {
+const Navigation = ({ isOpen, setToggleNav, navActive }) => {
   const router = useRouter();
   let pageName = router.pathname.substring(1, router.pathname.length);
 
   return (
     <>
-      <div className="c-main__navigation c-nav p-12 py-8 lg:py-16 lg:px-24 text-sm flex space-x-12 justify-end items-center uppercase font-semibold ">
+      <div
+        className={`c-main__navigation c-nav py-8 lg:py-16 px-8 sm:px-12 lg:px-24 text-sm flex space-x-12 justify-end items-center uppercase font-semibold ${
+          !isOpen && navActive ? "c-nav--active " : ""
+        }`}
+      >
+        <div
+          className={`absolute px-8 sm:px-12 lg:px-24 left-0  ${
+            navActive ? "slideInLeft" : "slideOutLeft"
+          }`}
+        >
+          Mave Logo SM
+        </div>
         <div className="space-x-12 hidden sm:block">
           {pages &&
             pages.map((page, index) => {
@@ -292,6 +303,20 @@ const SideNavigation = ({ isOpen, setToggleNav, className = "" }) => {
 export default function Home() {
   const scrollVariables = useRef<any>();
   const scrollThing = useRef<any>();
+
+  const [navActive, setNavActive] = useState(false);
+
+  useEffect(() => {
+    scrollVariables.current.onscroll = () => {
+      let trackScrollTop = scrollVariables.current.scrollTop;
+
+      if (trackScrollTop > 200) {
+        setNavActive(true);
+      } else {
+        setNavActive(false);
+      }
+    };
+  }, []);
   //   useEffect(() => {
   //     scrollVariables.current.onscroll = () => {
   //       let screenHeight = scrollVariables.current.clientHeight;
@@ -397,11 +422,12 @@ export default function Home() {
           <Navigation
             isOpen={toggleNav}
             setToggleNav={setToggleNav}
+            navActive={navActive}
           ></Navigation>
 
-          <div className="px-12 lg:px-24  flex">
-            <div className="grid w-full sm:w-11/12 lg:w-6/12 content-between h-full">
-              <div className="-mb-8 py-12 -mt-12 sm:-mt-8">
+          <div className="px-8 sm:px-12 lg:px-24  flex">
+            <div className="w-full sm:w-11/12 lg:w-6/12 h-full flex items-center">
+              <div className="-mb-20 py-12">
                 <div className="text-4xl md:text-5xl lg:text-6xl font-extrabold -ml-1">
                   Mave
                 </div>
@@ -440,7 +466,7 @@ export default function Home() {
               <img className="c-main__image"></img>
             </div>
           </div>
-          <div className="grid sm:justify-start px-12 lg:px-24 text-3xl sm:text-2xl md:text-3xl gap-4 grid-flow-col items-center justify-items-center -mt-4 sm:-mt-4">
+          <div className="grid sm:justify-start px-8 sm:px-12 lg:px-24 text-2xl sm:text-2xl md:text-3xl gap-2 sm:gap-6 grid-flow-col items-center justify-items-center -mt-4 sm:-mt-4">
             <SocialLink
               link="https://www.instagram.com/mavesound/"
               media="instagram"
@@ -475,7 +501,7 @@ export default function Home() {
         </div>
       </main>
       <div
-        className="c-music flex items-center justify-center flex-col h-full p-6 py-12 sm:p-12 md:p-24 md:h-screen " 
+        className="c-music flex items-center justify-center flex-col h-full p-6 py-12 sm:p-12 md:p-24 md:h-screen "
         id="music"
       >
         <h1 className="text-3xl sm:text-4xl flex font-bold -mt-4 items-center justify-between space-x-6">
@@ -509,9 +535,7 @@ export default function Home() {
                     className={`grid c-music__caroussel gap-4 
                     grid-rows-3 md:grid-rows-2 grid-cols-2 md:grid-cols-3 
                     
-                    ${
-                      index != 0 ? "slideInRight" : "hidden"
-                    }`}
+                    ${index != 0 ? "slideInRight" : "hidden"}`}
                   >
                     {songs
                       .slice(index, index + 6)
@@ -566,113 +590,7 @@ export default function Home() {
           <MusicNavigatorDot enabled={false} /> */}
         </div>
       </div>
-      <div
-        className="c-contact h-full md:h-screen flex p-12 sm:p-12 md:p-24 justify-center flex-col "
-        id="contact"
-      >
-        <h2 className="text-3xl font-bold">Contact Mave</h2>
-        <Contact></Contact>
 
-        <div className="mt-8 sm:mt-24">
-          <div className="items-center font-medium gap-3 text-white text-opacity-80 hidden sm:flex">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="26.543"
-              height="26.545"
-              viewBox="0 0 26.543 26.545"
-            >
-              <g
-                id="at-sign"
-                transform="translate(-0.984 -0.983)"
-                opacity="0.8"
-              >
-                <circle
-                  id="Ellipse_1"
-                  data-name="Ellipse 1"
-                  cx="4.991"
-                  cy="4.991"
-                  r="4.991"
-                  transform="translate(9.272 9.273)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-
-                <path
-                  id="Path_8"
-                  data-name="Path 8"
-                  d="M19.169,9.358V15.49a3.679,3.679,0,1,0,7.358,0V14.263A12.263,12.263,0,1,0,21.72,24"
-                  transform="translate(0 0)"
-                  fill="none"
-                  stroke="#fff"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                />
-              </g>
-            </svg>
-            or just write an old fashioned email..
-          </div>
-          <div className="mt-4 flex gap-2 sm:gap-6 text-sm font-semibold mix-blend-overlay sm:items-center flex-col sm:flex-row">
-            <div className="flex items-center gap-2">
-              {" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 "
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              management@mavesound.com
-            </div>
-            <div className="flex items-center gap-2">
-              {" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 "
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              promo@mavesound.com
-            </div>
-            <div className="flex items-center gap-2">
-              {" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 "
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                />
-              </svg>
-              bookings@mavesound.com
-            </div>
-          </div>
-        </div>
-      </div>
       <div className="c-about" id="about">
         <div className="c-about--overlay-purple flex flex-col-reverse sm:flex-row">
           <div className="w-full sm:w-1/2 grid h-96 sm:h-screen px-4 sm:px-8 lg:p-24 py-4 sm:pt-24 grid-rows-2 sm:grid-rows-3 grid-cols-2 gap-4 flex-wrap">
@@ -799,19 +717,127 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <footer className="c-footer px-12 sm:px-24 py-16 ">
-        <div className="flex justify-between w-full">
-          <div className="grid gap-2">
-            <div className="font-bold uppercase gap-2 flex items-center -ml-6">
+      <div
+        className="c-contact h-full lg:h-screen flex p-12 lg:p-24 justify-center flex-col "
+        id="contact"
+      >
+        <h2 className="text-3xl font-bold">Contact Mave</h2>
+        <Contact></Contact>
+
+        <div className="mt-8 sm:mt-24">
+          <div className="items-center font-medium gap-3 text-white text-opacity-80 hidden sm:flex">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="26.543"
+              height="26.545"
+              viewBox="0 0 26.543 26.545"
+            >
+              <g
+                id="at-sign"
+                transform="translate(-0.984 -0.983)"
+                opacity="0.8"
+              >
+                <circle
+                  id="Ellipse_1"
+                  data-name="Ellipse 1"
+                  cx="4.991"
+                  cy="4.991"
+                  r="4.991"
+                  transform="translate(9.272 9.273)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+
+                <path
+                  id="Path_8"
+                  data-name="Path 8"
+                  d="M19.169,9.358V15.49a3.679,3.679,0,1,0,7.358,0V14.263A12.263,12.263,0,1,0,21.72,24"
+                  transform="translate(0 0)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                />
+              </g>
+            </svg>
+            or just write an old fashioned email..
+          </div>
+          <div className="mt-4 flex gap-2 sm:gap-6 text-sm font-semibold mix-blend-overlay sm:items-center flex-col sm:flex-row">
+            <div className="flex items-center gap-2">
+              {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-4 w-4 transform rotate-45"
+                className="h-4 w-4 "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              management@mavesound.com
+            </div>
+            <div className="flex items-center gap-2">
+              {" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              promo@mavesound.com
+            </div>
+            <div className="flex items-center gap-2">
+              {" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-4 w-4 "
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                />
+              </svg>
+              bookings@mavesound.com
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer className="c-footer px-12 lg:px-24 py-16 text-sm sm:text-base">
+        <div className="flex justify-between w-full">
+          <div className="grid gap-2">
+            <div className="font-bold uppercase gap-2 flex items-center ">
+              Navigate{" "}
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-3 w-3 transform rotate-45"
                 viewBox="0 0 20 20"
                 fill="currentColor"
               >
                 <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
               </svg>{" "}
-              Navigate{" "}
             </div>
             {pages &&
               pages.map((page, index) => {
