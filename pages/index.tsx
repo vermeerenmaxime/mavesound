@@ -2,11 +2,9 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import '../node_modules/font-awesome/css/font-awesome.min.css';
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
-// import InstagramIcon from "../src/svg/instagram-brands.svg";
+
 
 import { useRouter } from "next/router";
 import React, {
@@ -730,41 +728,41 @@ export default function Home() {
               discovered the magic of Tomorrowland at a very young age. Inspired
               by this world famous festival, Mave started making his own music
               at the age of 15. 5 years later, he already hit a million streams
-              and released his very first own track called 'Who Are You' in
+              and released his very first own track called &apos;Who Are You&apos; in
               collaboration with Danish singer-songwriter LauraBrown. You can
               describe his music genre as modern house with a futuristic twist.
               His tracks and remixes have been played all over the world, by the
               biggest DJs in the scene, such as KAAZE, Madison Mars, Carta,
               Lucas & Steve and many more. Make sure to keep an eye out on Mave.
-              He's ready to become a big inspiration for many others!
+              He&apos;s ready to become a big inspiration for many others!
             </div>
             <div className="text-sm mt-4 text-white text-opacity-70">
-              'Who Are You' was his first single to release. He collaborated
+              &apos;Who Are You&apos; was his first single to release. He collaborated
               with the amazing sing-songwriter LauraBrown from Denmark on this
               record. He signed the track back in Januari 2020 on a record label
               called Loud Memory that distributes their tracks with the help of
               Sony Music Belgium / The Orchard. <br></br>
-              <br></br>His second single 'Criminal Soul' was released in June of
+              <br></br>His second single &apos;Criminal Soul&apos; was released in June of
               2020 on the same label. This time he collaborated with a
               singer-songwriter-actor from Antwerp called Krispo. Krispo made
               his debut on all streaming platforms with this track.<br></br>
-              <br></br>With the success of Mave's first ever release 'Who Are
-              You', Laura and Maxime decided to work on an old project called
+              <br></br>With the success of Mave&apos;s first ever release &apos;Who Are
+              You&apos;, Laura and Maxime decided to work on an old project called
               Heart Broken. They signed a deal for the track in May and released
               it in June aswell. Both 3 tracks were a huge succes and Mave
               started gaining a lot attraction from other producers that wanted
               to work with him.<br></br>
-              <br></br>Mave his last track 'Higher' was such a big release. It
+              <br></br>Mave his last track &apos;Higher&apos; was such a big release. It
               ended up in the official Spotify editorial playlists with millions
               of followers. The track got released on christmass the 25th of
               december. His track also got played on over 10 radioshows all
               around the world. Things were starting to get real!<br></br>For
               the last couple of months, Mave has been silently making progress
               in his productions and learning new skills. He released a couple
-              of remixes that are being supported by a lot DJ's and producers.
+              of remixes that are being supported by a lot DJ&apos;s and producers.
               <br></br>
-              <br></br>'So much new music with a lot of interesting
-              singer-songwriters and producers are in the make!' ~ Mave
+              <br></br>&apos;So much new music with a lot of interesting
+              singer-songwriters and producers are in the make!&apos; ~ Mave
             </div>
           </div>
         </div>
