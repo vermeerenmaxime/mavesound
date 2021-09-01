@@ -3,9 +3,9 @@ import Image from "next/image";
 import Link from "next/link";
 
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+// import '../node_modules/font-awesome/css/font-awesome.min.css';
 
-import '@fortawesome/fontawesome-free/css/all.min.css';
+import "@fortawesome/fontawesome-free/css/all.min.css";
 // import InstagramIcon from "../src/svg/instagram-brands.svg";
 
 import { useRouter } from "next/router";
@@ -20,49 +20,51 @@ import React, {
 import { songType } from "../src/types/song";
 import Contact from "./contact";
 
-const pages = ["home", "music", "shows", "about", "contact"];
+const pages = ["home", "music", "about", "contact"];
 const songs = [
   {
-    trackName: "Higher 1",
+    trackName: "Higher",
     artists: "Mave",
     listenURL: "https://orcd.co/mave4",
     backgroundImage:
       "https://loudmemory.com/music/files/card_image_icon-141.jpg",
   },
   {
-    trackName: "Who Are You 2",
+    trackName: "Who Are You",
+    artists: "Mave & LauraBrown",
+    listenURL: "#",
+    backgroundImage:
+      "https://i.scdn.co/image/ab67616d0000b2734fea36defb7a0f5199bbdf35",
+  },
+  {
+    trackName: "Criminal Soul",
+    artists: "Mave & Krispo",
+    listenURL: "#",
+    backgroundImage:
+      "https://i.scdn.co/image/ab67616d0000b2734c022e2cd26047a06a7b11b1",
+  },
+  {
+    trackName: "Heart Broken",
     artists: "Mave & LauraBrown",
     listenURL: "https://orcd.co/mave4",
     backgroundImage:
-      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+      "https://i.scdn.co/image/ab67616d0000b273642d090590c3cd449121d2ed",
   },
   {
-    trackName: "Heart Broken 3",
-    artists: "Mave & LauraBrown",
-    listenURL: "https://orcd.co/mave4",
-    backgroundImage:
-      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
-  },
-  {
-    trackName: "Higher 4",
+    trackName: "Stay Remix",
     artists: "Mave",
-    listenURL: "https://orcd.co/mave4",
+    listenURL:
+      "https://soundcloud.com/mavesound/stayremix?in=mavesound/sets/the-kid-laroi-justin-bieber",
     backgroundImage:
-      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+      "https://i1.sndcdn.com/artworks-1r0MVZtQFBXwdtfT-nVizaA-t500x500.jpg",
   },
   {
-    trackName: "Who Are You 5",
-    artists: "Mave & LauraBrown",
-    listenURL: "https://orcd.co/mave4",
+    trackName: "Hold On Remix",
+    artists: "Mave & Sam Ourt",
+    listenURL:
+      "https://soundcloud.com/sam-ourt/holdonremix?in=mavesound/sets/justin-bieber-hold-on-sam-ourt",
     backgroundImage:
-      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
-  },
-  {
-    trackName: "Heart Broken 6",
-    artists: "Mave & LauraBrown",
-    listenURL: "https://orcd.co/mave4",
-    backgroundImage:
-      "https://loudmemory.com/music/files/card_image_icon-141.jpg",
+      "https://i1.sndcdn.com/artworks-7PfL7meze5amMxEX-jesMzw-t500x500.jpg",
   },
   {
     trackName: "Higher 7",
@@ -571,7 +573,7 @@ export default function Home() {
           <div>Music</div>
           <MusicNavigatorIcon enabled={true} direction="left" />
         </h1>
-        <div className="mt-4 w-full ">
+        <div className="mt-4 w-full lg:w-3/4">
           {/* <div className="mt-4 grid items-center w-11/12  sm:w-10/12 md:w-9/12 max-w-5xl gap-4 grid-rows-3 sm:grid-rows-2 grid-cols-2 sm:grid-cols-3"> */}
           {/* {songs.slice(0,6)} */}
           {/* {songs &&
@@ -596,8 +598,11 @@ export default function Home() {
                     key={index}
                     className={`grid c-music__caroussel gap-4 
                     grid-rows-3 md:grid-rows-2 grid-cols-2 md:grid-cols-3 
-                    
-                    ${index != 0 ? "slideInRight" : "hidden"}`}
+                    ${index == 0 ? "" : "hidden"}`}
+                    // className={`grid c-music__caroussel gap-4
+                    // grid-rows-3 md:grid-rows-2 grid-cols-2 md:grid-cols-3
+
+                    // ${index != 0 ? "slideInRight" : "hidden"}`}
                   >
                     {songs
                       .slice(index, index + 6)
@@ -633,13 +638,6 @@ export default function Home() {
                 // });
               }
             })}
-
-          {/* <MusicCover>yas!</MusicCover>
-          <MusicCover></MusicCover>
-          <MusicCover></MusicCover>
-          <MusicCover></MusicCover>
-          <MusicCover></MusicCover>
-          <MusicCover></MusicCover> */}
         </div>
         <div className="mt-8 flex space-x-2">
           {songs &&
@@ -657,7 +655,7 @@ export default function Home() {
         <div className="c-about--overlay-purple flex flex-col-reverse sm:flex-row">
           <div className="w-full sm:w-1/2 grid h-96 sm:h-screen px-4 sm:px-8 lg:p-24 py-4 sm:pt-24 grid-rows-2 sm:grid-rows-3 grid-cols-2 gap-4 flex-wrap">
             <div
-              className="bg-black rounded-md sm:col-span-2 bg-opacity-70 "
+              className="bg-black rounded-md sm:col-span-2 opacity-90 "
               style={{
                 backgroundImage: `url(${artistImages[0]})`,
                 backgroundSize: "cover",
@@ -665,7 +663,7 @@ export default function Home() {
               }}
             ></div>
             <div
-              className="bg-black rounded-md sm:row-span-2 bg-opacity-30 "
+              className="bg-black rounded-md sm:row-span-2 opacity-90 "
               style={{
                 backgroundImage: `url(${artistImages[1]})`,
                 backgroundSize: "cover",
@@ -673,7 +671,7 @@ export default function Home() {
               }}
             ></div>
             <div
-              className="bg-black rounded-md bg-opacity-70 "
+              className="bg-black rounded-md opacity-90 "
               style={{
                 backgroundImage: `url(${artistImages[2]})`,
                 backgroundSize: "cover",
@@ -681,7 +679,7 @@ export default function Home() {
               }}
             ></div>
             <div
-              className="bg-black rounded-md bg-opacity-70 "
+              className="bg-black rounded-md opacity-90 "
               style={{
                 backgroundImage: `url(${artistImages[3]})`,
                 backgroundSize: "cover",
@@ -690,7 +688,7 @@ export default function Home() {
             ></div>
             <div className="col-span-2 gap-4 grid-cols-4 hidden sm:grid">
               <div
-                className="bg-black rounded-md h-24 bg-opacity-70 "
+                className="bg-black rounded-md h-24 opacity-90 "
                 style={{
                   backgroundImage: `url(${artistImages[4]})`,
                   backgroundSize: "cover",
@@ -698,7 +696,7 @@ export default function Home() {
                 }}
               ></div>
               <div
-                className="bg-black rounded-md h-24 bg-opacity-70 "
+                className="bg-black rounded-md h-24 opacity-90 "
                 style={{
                   backgroundImage: `url(${artistImages[5]})`,
                   backgroundSize: "cover",
@@ -706,7 +704,7 @@ export default function Home() {
                 }}
               ></div>
               <div
-                className="bg-black rounded-md h-24 bg-opacity-70 "
+                className="bg-black rounded-md h-24 opacity-90 "
                 style={{
                   backgroundImage: `url(${artistImages[6]})`,
                   backgroundSize: "cover",
@@ -714,7 +712,7 @@ export default function Home() {
                 }}
               ></div>
               <div
-                className="bg-black rounded-md h-24 bg-opacity-70 "
+                className="bg-black rounded-md h-24 opacity-90 "
                 style={{
                   backgroundImage: `url(${artistImages[7]})`,
                   backgroundSize: "cover",
@@ -726,55 +724,47 @@ export default function Home() {
           <div className="w-full sm:w-1/2 p-8 sm:p-24 sm:pl-0 ">
             <h3 className="font-bold text-3xl">Who&apos;s Mave?</h3>
             <div className="mt-6 text-white text-opacity-90">
-              Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-              nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam
-              erat, sed diam voluptua. At vero eos et accusam et justo duo
-              dolores et ea rebum. Stet clita kasd gubergren, no sea takimata
-              sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
-              amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
-              invidunt ut labore et dolore magna aliquyam erat, sed diam
-              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-              dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-              magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-              justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-              takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
-              sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-              voluptua.{" "}
+              Maxime Vermeeren, better known by his stage name Mave is a 20 year
+              old DJ/producer from Belgium. In march 2020 he released his very
+              first track with Sony Music. Born and raised in Belgium, he
+              discovered the magic of Tomorrowland at a very young age. Inspired
+              by this world famous festival, Mave started making his own music
+              at the age of 15. 5 years later, he already hit a million streams
+              and released his very first own track called 'Who Are You' in
+              collaboration with Danish singer-songwriter LauraBrown. You can
+              describe his music genre as modern house with a futuristic twist.
+              His tracks and remixes have been played all over the world, by the
+              biggest DJs in the scene, such as KAAZE, Madison Mars, Carta,
+              Lucas & Steve and many more. Make sure to keep an eye out on Mave.
+              He's ready to become a big inspiration for many others!
             </div>
             <div className="text-sm mt-4 text-white text-opacity-70">
-              At vero eos et accusam et justo duo dolores et ea rebum. Stet
-              clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-              dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-              magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-              justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-              takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
-              sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-              dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-              magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-              justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-              takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
-              sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-              dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-              elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-              magna aliquyam erat, sed diam voluptua. At vero eos et accusam et
-              justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
-              takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor
-              sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod
-              tempor invidunt ut labore et dolore magna aliquyam erat, sed diam
-              voluptua. At vero eos et accusam et justo duo dolores et ea rebum.
-              Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-              dolor sit
+              'Who Are You' was his first single to release. He collaborated
+              with the amazing sing-songwriter LauraBrown from Denmark on this
+              record. He signed the track back in Januari 2020 on a record label
+              called Loud Memory that distributes their tracks with the help of
+              Sony Music Belgium / The Orchard. <br></br>
+              <br></br>His second single 'Criminal Soul' was released in June of
+              2020 on the same label. This time he collaborated with a
+              singer-songwriter-actor from Antwerp called Krispo. Krispo made
+              his debut on all streaming platforms with this track.<br></br>
+              <br></br>With the success of Mave's first ever release 'Who Are
+              You', Laura and Maxime decided to work on an old project called
+              Heart Broken. They signed a deal for the track in May and released
+              it in June aswell. Both 3 tracks were a huge succes and Mave
+              started gaining a lot attraction from other producers that wanted
+              to work with him.<br></br>
+              <br></br>Mave his last track 'Higher' was such a big release. It
+              ended up in the official Spotify editorial playlists with millions
+              of followers. The track got released on christmass the 25th of
+              december. His track also got played on over 10 radioshows all
+              around the world. Things were starting to get real!<br></br>For
+              the last couple of months, Mave has been silently making progress
+              in his productions and learning new skills. He released a couple
+              of remixes that are being supported by a lot DJ's and producers.
+              <br></br>
+              <br></br>'So much new music with a lot of interesting
+              singer-songwriters and producers are in the make!' ~ Mave
             </div>
           </div>
         </div>
@@ -787,7 +777,7 @@ export default function Home() {
         <Contact></Contact>
 
         <div className="mt-8 sm:mt-24">
-          <div className="items-center font-medium gap-3 text-white text-opacity-80 hidden sm:flex">
+          <div className="items-center font-medium gap-3 text-white text-opacity-80 grid grid-flow-col justify-start">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="26.543"
@@ -828,8 +818,8 @@ export default function Home() {
             </svg>
             or just write an old fashioned email..
           </div>
-          <div className="mt-4 flex gap-2 sm:gap-6 text-sm font-semibold mix-blend-overlay sm:items-center flex-col sm:flex-row">
-            <div className="flex items-center gap-2">
+          <div className="mt-4 grid grid-flow-col justify-start items-center justify-items-center gap-2 sm:gap-6 text-sm font-semibold mix-blend-overlay flex-col sm:flex-row">
+            <div className="grid grid-flow-col items-center gap-2">
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -847,7 +837,7 @@ export default function Home() {
               </svg>
               management@mavesound.com
             </div>
-            <div className="flex items-center gap-2">
+            <div className="grid grid-flow-col items-center gap-2">
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -865,7 +855,7 @@ export default function Home() {
               </svg>
               promo@mavesound.com
             </div>
-            <div className="flex items-center gap-2">
+            <div className="grid grid-flow-col items-center gap-2">
               {" "}
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -923,7 +913,7 @@ export default function Home() {
             <br />
             by{" "}
             <a
-              href="https://maveproductions.com"
+              href="https://mavesound.com"
               className="font-medium hover:underline"
             >
               MaveProductions
@@ -990,6 +980,7 @@ const MusicCover = ({
         style={{
           backgroundImage: `url(${backgroundImage})`,
           backgroundSize: "cover",
+          backgroundPosition: "center",
         }}
       ></div>
       <div
@@ -1006,7 +997,7 @@ const MusicCover = ({
       <div
         className={`h-36 lg:h-48 -mt-36 lg:-mt-48 ${
           description ? "fadeIn" : "fadeOut"
-        } bg-white bg-opacity-25  transform -skew-x-12 -ml-6 w-11/12 md:w-3/4 h-full backdrop-filter backdrop-blur-xl `}
+        } bg-white bg-opacity-25  transform -skew-x-12 -ml-6 w-10/12  h-full backdrop-filter backdrop-blur-xl `}
       ></div>
       <div
         className={`h-36 lg:h-48 -mt-36 lg:-mt-48 ${
@@ -1022,7 +1013,7 @@ const MusicCover = ({
           </div>
 
           <SubLink size="xs" href={listenURL}>
-            Stream <div className="hidden md:flex pl-1"> here</div>
+            Stream <div className="hidden lg:flex pl-1"> here</div>
           </SubLink>
         </div>
       </div>

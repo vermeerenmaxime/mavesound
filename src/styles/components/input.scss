@@ -8,7 +8,7 @@
     transition: 0.2s ease all;
     will-change: background;
     font-size: 0.875rem;
-
+    border-radius:0;
     &:hover,
     &:focus {
         background: color(darkblue, 50);
