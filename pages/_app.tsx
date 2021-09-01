@@ -1,10 +1,13 @@
 import "tailwindcss/tailwind.css";
 import "../src/styles/screen.scss";
 
-import "@fortawesome/fontawesome-free/js/fontawesome";
-import "@fortawesome/fontawesome-free/js/solid";
-import "@fortawesome/fontawesome-free/js/regular";
-import "@fortawesome/fontawesome-free/js/brands";
+// import "@fortawesome/react-fontawesome";
+// import "@fortawesome/fontawesome-free/js/fontawesome";
+// import "@fortawesome/fontawesome-free/js/solid";
+// import "@fortawesome/fontawesome-free/js/regular";
+// import "@fortawesome/fontawesome-free/js/brands";
+
+import 'font-awesome/css/font-awesome.min.css';
 
 import React, { createContext, useState } from "react";
 

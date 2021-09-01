@@ -2,6 +2,10 @@ import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
 
+// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+// import '../node_modules/font-awesome/css/font-awesome.min.css'; 
+
+
 // import InstagramIcon from "../src/svg/instagram-brands.svg";
 
 import { useRouter } from "next/router";
@@ -225,6 +229,7 @@ const SocialLink = ({ link, media, extraClass = "" }) => {
       <i
         className={`fa fab fa-${media} c-socials__icon transform ${extraClass} `}
       ></i>
+      {/* <FontAwesomeIcon icon={media} /> */}
     </a>
   );
 };
@@ -393,7 +398,10 @@ export default function Home() {
     "https://i.imgur.com/ucL13H4.jpg",
     "https://partyflock.nl/ov/images/artist/83741_2971x2432_399015/Mesto.jpg",
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpartyflock.nl%2Fimages%2Fartist%2F83741_1169x1169_572283%2FMesto.jpg&f=1&nofb=1",
-    "https://dynamicmedia.livenationinternational.com/Media/n/r/c/ad6a5ff7-fb0a-4e3f-a5fa-fb26381f186f.jpg","https://media.resources.festicket.com/www/artists/MartinGarrix.jpg","https://d21buns5ku92am.cloudfront.net/68681/images/388052-JBL%2Bx_shootHighRes_v3-58e07d-large-1618928217.png","https://media.nu.nl/m/mcyxiakatqdb_wd1280.jpg/bono-veranderde-volgens-martin-garrix-letterlijk-elk-woord-van-tekst-ek-lied.jpg"
+    "https://dynamicmedia.livenationinternational.com/Media/n/r/c/ad6a5ff7-fb0a-4e3f-a5fa-fb26381f186f.jpg",
+    "https://media.resources.festicket.com/www/artists/MartinGarrix.jpg",
+    "https://d21buns5ku92am.cloudfront.net/68681/images/388052-JBL%2Bx_shootHighRes_v3-58e07d-large-1618928217.png",
+    "https://media.nu.nl/m/mcyxiakatqdb_wd1280.jpg/bono-veranderde-volgens-martin-garrix-letterlijk-elk-woord-van-tekst-ek-lied.jpg",
   ];
 
   const [toggleNav, setToggleNav] = useState(false);
@@ -882,7 +890,9 @@ export default function Home() {
       <footer className="c-footer px-12 lg:px-24 py-16 text-sm sm:text-base">
         <div className="flex justify-between w-full">
           <div className="grid gap-2">
-            <div className="font-bold uppercase gap-2 flex items-center ">Navigation</div>
+            <div className="font-bold uppercase gap-2 flex items-center ">
+              Navigation
+            </div>
             {/* Custom website created by Mave */}
             {pages &&
               pages.map((page, index) => {
