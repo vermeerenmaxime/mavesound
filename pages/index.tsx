@@ -301,6 +301,8 @@ const SideNavigation = ({ isOpen, setToggleNav, className = "" }) => {
 };
 
 export default function Home() {
+  // kick off the polyfill!
+
   const scrollVariables = useRef<any>();
   const scrollThing = useRef<any>();
 

@@ -1,17 +1,26 @@
 .c-nav {
     color: color(light, 95);
     position: fixed;
-    width: 100%;
+    // width: 100%;
+    left: 0;
+    right: 0;
     transition: all 0.2s ease-in;
     will-change: background, padding, font-size;
-    background:color(light, 0);
+    background: color(light, 0);
+    overflow:hidden;
     &--active {
         backdrop-filter: blur(2em);
         background: color(light, 10);
-        padding-top:2em;
-        padding-bottom:2em;
+        padding-top: 2em;
+        padding-bottom: 2em;
         font-size: 0.75em;
-        box-shadow:0 0 50px rgba(0, 0, 0, 0.2);
+        // transform: scale(.9);
+        // right: 3em;
+        // left: 3em;
+        // top:2em;
+        transform-origin: bottom;
+        box-shadow: 0 0 100px rgba(0, 0, 0, 0.3);
+        border-radius: 4px;
     }
     z-index: 40;
     &__link {
