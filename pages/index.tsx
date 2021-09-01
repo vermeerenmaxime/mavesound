@@ -106,10 +106,17 @@ const NavigationLink = ({
 
 const Navigation = ({ isOpen, setToggleNav, navActive }) => {
   const router = useRouter();
-  let pageName = router.pathname.substring(1, router.pathname.length);
+  let currentPage = router.pathname.substring(1, router.pathname.length);
+  const [pageName, setPageName] = useState(currentPage);
 
   return (
     <>
+      <SideNavigation
+        isOpen={isOpen}
+        setToggleNav={setToggleNav}
+        currentPage={pageName}
+        setCurrentPage={setPageName}
+      ></SideNavigation>
       <div
         className={`c-main__navigation c-nav py-8 lg:py-16 px-8 sm:px-12 lg:px-24 text-sm flex space-x-12 justify-end items-center uppercase font-semibold ${
           !isOpen && navActive ? "c-nav--active " : ""
@@ -136,6 +143,7 @@ const Navigation = ({ isOpen, setToggleNav, navActive }) => {
                       ? true
                       : false
                   }
+                  onClick={() => setPageName(page)}
                 >
                   {page}
                 </NavigationLink>
@@ -189,7 +197,7 @@ const SubLink = ({ children, className = "", href = "/", size = "sm" }) => {
   return (
     <Link href={`${href}`}>
       <a
-        className={`flex uppercase font-bold tracking-widest text-${size} cursor-pointer items-center mt-8 ${className}hover:`}
+        className={`flex uppercase font-bold tracking-widest text-${size} cursor-pointer items-center mt-8 ${className}`}
       >
         {children}{" "}
         <svg
@@ -221,10 +229,13 @@ const SocialLink = ({ link, media, extraClass = "" }) => {
   );
 };
 
-const SideNavigation = ({ isOpen, setToggleNav, className = "" }) => {
-  const router = useRouter();
-  let pageName = router.pathname.substring(1, router.pathname.length);
-
+const SideNavigation = ({
+  isOpen,
+  setToggleNav,
+  className = "",
+  currentPage = "",
+  setCurrentPage,
+}) => {
   return (
     <>
       <aside
@@ -242,9 +253,9 @@ const SideNavigation = ({ isOpen, setToggleNav, className = "" }) => {
                   //     className=""
                   //     href={"/"}
                   //     // selected={
-                  //     //   pageName === page
+                  //     //   currentPage === page
                   //     //     ? true
-                  //     //     : index === 0 && pageName === ""
+                  //     //     : index === 0 && currentPage === ""
                   //     //     ? true
                   //     //     : false
                   //     // }
@@ -255,13 +266,16 @@ const SideNavigation = ({ isOpen, setToggleNav, className = "" }) => {
                     key={index}
                     href={`#${page}`}
                     selected={
-                      pageName === page
+                      currentPage === page
                         ? true
-                        : index === 0 && pageName === ""
+                        : index === 0 && currentPage === ""
                         ? true
                         : false
                     }
-                    onClick={() => setToggleNav(!isOpen)}
+                    onClick={() => {
+                      setToggleNav(!isOpen);
+                      setCurrentPage(page);
+                    }}
                   >
                     {page}
                   </NavigationLink>
@@ -308,12 +322,17 @@ export default function Home() {
 
   const [navActive, setNavActive] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  const [screenHeight, setScreenHeight] = useState(500);
 
-  let screenHeight = scrollVariables.current.clientHeight;
+  //   let screenHeight = scrollVariables.current.clientHeight ?? screen.height;
+  //   useEffect(() => {
+
+  //   },[]);
 
   useEffect(() => {
     scrollVariables.current.onscroll = () => {
       let trackScrollTop = scrollVariables.current.scrollTop;
+      setScreenHeight(scrollVariables.current.clientHeight);
 
       if (trackScrollTop > 200) {
         setNavActive(true);
@@ -390,12 +409,12 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <div
-        className={`fixed bottom-0 w-36 -ml-8 inset-x-2/4 text-sm hidden md:flex ${
+        className={`fixed bottom-0 w-20 -ml-8 inset-x-2/4 text-sm hidden md:flex ${
           scrolling ? "slideFadeOutDown" : "slideFadeDown"
         }`}
       >
         <div
-          className="flex items-center flex-col justify-center h-36 gap-1 text-white text-opacity-60 hover:text-opactiy-100 cursor-pointer"
+          className="flex items-center flex-col justify-center mb-12 gap-1 text-white text-opacity-60 hover:text-opactiy-100 cursor-pointer"
           onClick={() => (scrollVariables.current.scrollTop = screenHeight)}
           onScroll={() => (scrollVariables.current.scrollTop = 250)}
         >
@@ -416,10 +435,7 @@ export default function Home() {
           </svg>
         </div>
       </div>
-      <SideNavigation
-        isOpen={toggleNav}
-        setToggleNav={setToggleNav}
-      ></SideNavigation>
+
       <main className="c-main" id="home">
         <div className="c-main--overlay-green"></div>
         {/* <svg
