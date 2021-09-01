@@ -389,10 +389,11 @@ export default function Home() {
   //   }, []);
 
   const artistImages = [
-    "https://instagram.fbru2-1.fna.fbcdn.net/v/t51.2885-15/e35/s1080x1080/233792805_280887997173551_1765922229156711915_n.jpg?_nc_ht=instagram.fbru2-1.fna.fbcdn.net&_nc_cat=111&_nc_ohc=9CkObFkaINEAX9hDZLf&edm=AP_V10EBAAAA&ccb=7-4&oh=cd70996ab9bfc1a03deef34024c42fa6&oe=613291D9&_nc_sid=4f375e",
+    "https://images0.persgroep.net/rcs/j0hEIWTlubT5HFRnEZjXhBRZly0/diocontent/180518858/_fitwidth/694/?appId=21791a8992982cd8da851550a453bd7f&quality=0.8",
     "https://i.imgur.com/ucL13H4.jpg",
     "https://partyflock.nl/ov/images/artist/83741_2971x2432_399015/Mesto.jpg",
     "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fpartyflock.nl%2Fimages%2Fartist%2F83741_1169x1169_572283%2FMesto.jpg&f=1&nofb=1",
+    "https://dynamicmedia.livenationinternational.com/Media/n/r/c/ad6a5ff7-fb0a-4e3f-a5fa-fb26381f186f.jpg","https://media.resources.festicket.com/www/artists/MartinGarrix.jpg","https://d21buns5ku92am.cloudfront.net/68681/images/388052-JBL%2Bx_shootHighRes_v3-58e07d-large-1618928217.png","https://media.nu.nl/m/mcyxiakatqdb_wd1280.jpg/bono-veranderde-volgens-martin-garrix-letterlijk-elk-woord-van-tekst-ek-lied.jpg"
   ];
 
   const [toggleNav, setToggleNav] = useState(false);
@@ -438,8 +439,8 @@ export default function Home() {
 
       <main className="c-main" id="home">
         <div className="c-main--overlay-green"></div>
-        {/* <svg
-          className="c-main--overlay-arrow md:scale-50"
+        <svg
+          className="c-main--overlay-arrow scale-100"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1146.35 1080.4"
         >
@@ -464,7 +465,7 @@ export default function Home() {
             transform="translate(-350 -2223.157)"
             fill="url(#linear-gradient)"
           />
-        </svg> */}
+        </svg>
 
         <div
           className="c-main--parralello"
@@ -881,21 +882,12 @@ export default function Home() {
       <footer className="c-footer px-12 lg:px-24 py-16 text-sm sm:text-base">
         <div className="flex justify-between w-full">
           <div className="grid gap-2">
-            <div className="font-bold uppercase gap-2 flex items-center ">
-              Navigate{" "}
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-3 w-3 transform rotate-45"
-                viewBox="0 0 20 20"
-                fill="currentColor"
-              >
-                <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
-              </svg>{" "}
-            </div>
+            <div className="font-bold uppercase gap-2 flex items-center ">Navigation</div>
+            {/* Custom website created by Mave */}
             {pages &&
               pages.map((page, index) => {
                 return (
-                  <Link key={index} href="/" passHref>
+                  <Link key={index} href={`#${page}`} passHref>
                     <a className="capitalize hover:underline text-white text-opacity-80">
                       {page}
                     </a>
