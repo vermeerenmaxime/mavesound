@@ -5,7 +5,7 @@ import Link from "next/link";
 // import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 // import '../node_modules/font-awesome/css/font-awesome.min.css'; 
 
-
+import '@fortawesome/fontawesome-free/css/all.min.css';
 // import InstagramIcon from "../src/svg/instagram-brands.svg";
 
 import { useRouter } from "next/router";
@@ -227,7 +227,7 @@ const SocialLink = ({ link, media, extraClass = "" }) => {
   return (
     <a target="_blank" href={link} rel="noreferrer">
       <i
-        className={`fa fab fa-${media} c-socials__icon transform ${extraClass} `}
+        className={`fab fa-${media} c-socials__icon transform ${extraClass} `}
       ></i>
       {/* <FontAwesomeIcon icon={media} /> */}
     </a>
@@ -446,9 +446,9 @@ export default function Home() {
       </div>
 
       <main className="c-main" id="home">
-        <div className="c-main--overlay-green"></div>
+        <div className="c-main--overlay-green pointer-events-none"></div>
         <svg
-          className="c-main--overlay-arrow scale-100"
+          className="c-main--overlay-arrow scale-100 pointer-events-none"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1146.35 1080.4"
         >

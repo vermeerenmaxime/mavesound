@@ -7,7 +7,7 @@ import "../src/styles/screen.scss";
 // import "@fortawesome/fontawesome-free/js/regular";
 // import "@fortawesome/fontawesome-free/js/brands";
 
-import 'font-awesome/css/font-awesome.min.css';
+
 
 import React, { createContext, useState } from "react";
 

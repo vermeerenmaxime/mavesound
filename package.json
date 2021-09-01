@@ -14,6 +14,7 @@
     "@fortawesome/react-fontawesome": "^0.1.15",
     "emailjs-com": "^3.2.0",
     "font-awesome": "^4.7.0",
+    "font-awesome5": "^1.0.5",
     "fontawesome": "^5.6.3",
     "next": "11.1.0",
     "react": "17.0.2",
